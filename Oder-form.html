@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Affiliate Order Form - Send via WhatsApp</title>
+    <title>Affiliate Order Form - قیمت کے ساتھ آرڈر | WhatsApp</title>
     <style>
         * {
             box-sizing: border-box;
@@ -111,12 +111,45 @@
             content: " *";
             color: red;
         }
+        /* کل رقم والے باکس کا انداز - صرف تھوڑا نمایاں، ڈیزائن میں کوئی تبدیلی نہیں */
+        .total-box {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin-top: 5px;
+            border: 1px solid #e2e8f0;
+        }
+        .total-label {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #0f172a;
+        }
+        .total-amount {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2c3e66;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .total-currency {
+            font-size: 18px;
+            font-weight: 600;
+            color: #475569;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
 <div class="form-container">
     <h2>📦 آرڈر فارم (Affiliate)</h2>
-    <div class="sub">براہ کرم کسٹمر کی مکمل معلومات بھریں</div>
+    <div class="sub">براہ کرم کسٹمر کی مکمل معلومات اور قیمت بھریں</div>
 
     <form id="orderForm">
         <!-- کسٹمر کا نام -->
@@ -149,6 +182,27 @@
             <input type="text" id="product_code" placeholder="مثلاً: WH-101" required>
         </div>
 
+        <!-- ========== نیا سیکشن: قیمت اور ڈلیوری چارجز + خودکار کل ========== -->
+        <div class="row-2">
+            <div class="input-group">
+                <label class="required">پروڈکٹ کی قیمت (روپے میں)</label>
+                <input type="number" id="product_price" placeholder="مثلاً: 2500" step="1" value="0" required>
+            </div>
+            <div class="input-group">
+                <label>ڈلیوری چارجز (روپے میں)</label>
+                <input type="number" id="delivery_charges" placeholder="مثلاً: 200" step="1" value="0">
+            </div>
+        </div>
+
+        <!-- خودکار کل قیمت ڈسپلے -->
+        <div class="total-box">
+            <div class="total-label">💵 کل قیمت (خودکار حساب)</div>
+            <div class="total-amount">
+                <span id="total_amount">0</span> <span class="total-currency">روپے</span>
+            </div>
+            <div style="font-size: 12px; color: #4b5563; margin-top: 6px;">پروڈکٹ قیمت + ڈلیوری چارجز = کل رقم</div>
+        </div>
+
         <!-- مکمل ایڈریس -->
         <div class="input-group">
             <label class="required">مکمل ایڈریس (گھر/دفتر، علاقہ، نشانی)</label>
@@ -178,7 +232,7 @@
             <span class="whatsapp-icon">💚</span> واٹس ایپ پر بھیجیں
         </button>
         <footer>
-            🔁 بٹن دبانے سے WhatsApp کھلے گا -> آپ کو مکمل آرڈر کی تفصیل بھیج دی جائے گی
+            🔁 بٹن دبانے سے WhatsApp کھلے گا -> آرڈر کی مکمل تفصیل (قیمت + ڈلیوری + کل) بھیج دی جائے گی
         </footer>
     </form>
 </div>
@@ -187,6 +241,48 @@
     // آپ کا WhatsApp نمبر (انٹرنیشنل فارمیٹ میں بغیر صفر اور + کے)
     const YOUR_WHATSAPP_NUMBER = "923125540048";   // 92 کے بعد 3125540048
 
+    // تمام DOM عناصر
+    const productPriceInput = document.getElementById("product_price");
+    const deliveryChargesInput = document.getElementById("delivery_charges");
+    const totalAmountSpan = document.getElementById("total_amount");
+
+    // فنکشن: کل قیمت خودکار اپڈیٹ (پروڈکٹ پرائس + ڈلیوری)
+    function updateTotalPrice() {
+        let productPrice = parseFloat(productPriceInput.value);
+        let delivery = parseFloat(deliveryChargesInput.value);
+        
+        // اگر ویلیو NaN ہو تو صفر سیٹ کریں
+        if (isNaN(productPrice)) productPrice = 0;
+        if (isNaN(delivery)) delivery = 0;
+        
+        // منفی نمبر نہ ہو تو بہتر ہے، لیکن صارف کو روکنے کے لیے ہم صفر سے کم نہ ہونے دیں
+        if (productPrice < 0) productPrice = 0;
+        if (delivery < 0) delivery = 0;
+        
+        let total = productPrice + delivery;
+        // کل رقم کو عدد (integer) کی شکل میں دکھائیں
+        totalAmountSpan.innerText = Math.floor(total);
+    }
+
+    // دونوں ان پٹس پر ایونٹ لگائیں (ریئل ٹائم کل)
+    if (productPriceInput) {
+        productPriceInput.addEventListener("input", function() {
+            // اگر صارف خالی چھوڑ دے تو 0 کر دیں
+            if (productPriceInput.value === "") productPriceInput.value = 0;
+            updateTotalPrice();
+        });
+    }
+    if (deliveryChargesInput) {
+        deliveryChargesInput.addEventListener("input", function() {
+            if (deliveryChargesInput.value === "") deliveryChargesInput.value = 0;
+            updateTotalPrice();
+        });
+    }
+    
+    // صفحہ لوڈ ہوتے ہی کل قیمت سیٹ کریں
+    updateTotalPrice();
+
+    // واٹس ایپ بھیجنے کا فنکشن
     document.getElementById("sendWhatsAppBtn").addEventListener("click", function() {
         // تمام فیلڈز کی ویلیوز لیں
         let customerName = document.getElementById("customer_name").value.trim();
@@ -198,27 +294,52 @@
         let city = document.getElementById("city").value.trim();
         let postal = document.getElementById("postal").value.trim();
         let notes = document.getElementById("notes").value.trim();
-
-        // ضروری فیلڈز چیک کریں
+        
+        // قیمت والے فیلڈز
+        let productPriceRaw = document.getElementById("product_price").value.trim();
+        let deliveryRaw = document.getElementById("delivery_charges").value.trim();
+        
+        // کل قیمت موجودہ ڈسپلے سے بھی لے سکتے ہیں لیکن بہتر ہے کہ دوبارہ حساب کریں
+        let productPrice = parseFloat(productPriceRaw);
+        let deliveryCharge = parseFloat(deliveryRaw);
+        if (isNaN(productPrice)) productPrice = 0;
+        if (isNaN(deliveryCharge)) deliveryCharge = 0;
+        if (productPrice < 0) productPrice = 0;
+        if (deliveryCharge < 0) deliveryCharge = 0;
+        let totalPrice = productPrice + deliveryCharge;
+        
+        // === ضروری فیلڈز کی جانچ (پرانا + نئی قیمت) ===
         if (!customerName || !customerPhone || !productName || !productCode || !address || !city) {
             alert("❌ براہ کرم تمام ضروری فیلڈز بھریں (ستارے والے)");
             return;
         }
-
+        
+        // پروڈکٹ کی قیمت کی خاص جانچ (صارف نے ڈالی یا نہیں)
+        if (productPriceRaw === "" || productPriceRaw === null || isNaN(parseFloat(productPriceRaw)) || parseFloat(productPriceRaw) <= 0) {
+            alert("❌ براہ کرم پروڈکٹ کی درست قیمت درج کریں (0 سے زیادہ)");
+            return;
+        }
+        
         // فون نمبر کی بنیادی جانچ (پاکستانی)
         let phoneRegex = /^03[0-9]{9}$/;
         if (!phoneRegex.test(customerPhone)) {
             alert("❌ کسٹمر کا موبائل نمبر درست نہیں (0300xxxxxxx کی شکل میں لکھیں)");
             return;
         }
-
-        // ایک خوبصورت میسج بنائیں
+        
+        // ڈلیوری چارجز اگر منفی یا NaN ہو تو صفر سیٹ کر دیا پہلے ہی، یہاں کوئی الرٹ نہیں
+        
+        // خوبصورت میسج بنائیں (اب قیمت اور کل کے ساتھ)
         let message = "🆕 *نیا آرڈر موصول ہوا* 🆕\n\n";
         message += `👤 *کسٹمر نام:* ${customerName}\n`;
         message += `📞 *موبائل:* ${customerPhone}\n`;
         if (altPhone) message += `🔄 *دوسرا نمبر:* ${altPhone}\n`;
         message += `📦 *پروڈکٹ:* ${productName}\n`;
         message += `🔢 *پروڈکٹ کوڈ:* ${productCode}\n`;
+        // قیمت کی تفصیلات
+        message += `💰 *پروڈکٹ قیمت:* Rs. ${Math.floor(productPrice)}\n`;
+        message += `🚚 *ڈلیوری چارجز:* Rs. ${Math.floor(deliveryCharge)}\n`;
+        message += `💵 *کل رقم (پروڈکٹ+ڈلیوری):* Rs. ${Math.floor(totalPrice)}\n`;
         message += `📍 *پتہ:* ${address}\n`;
         message += `🏙️ *شہر:* ${city}`;
         if (postal) message += ` (${postal})`;
@@ -226,11 +347,11 @@
         if (notes) message += `📝 *خصوصی ہدایات:* ${notes}\n\n`;
         message += `✅ آرڈر کی تصدیق کریں اور ڈیلیوری ایڈریس چیک کریں۔\n`;
         message += `📅 تاریخ: ${new Date().toLocaleString('ur-PK')}`;
-
-        // WhatsApp URL بنائیں (ٹیکسٹ کو انکوڈ کریں)
+        
+        // واٹس ایپ لنک بنائیں
         let whatsappUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         
-        // نیا ٹیب کھولیں (واٹس ایپ ویب یا موبائل ایپ کھلے گا)
+        // نیا ٹیب کھولیں
         window.open(whatsappUrl, '_blank');
     });
 </script>
