@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>پروفیشنل ڈیلیوری کیلکولیٹر | بہترین ریٹ تجویز</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f8fafc;
+  --surface:#ffffff;
+  --border:#cbd5e1;
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --text-dark:#0f172a;
+  --text-muted:#475569;
+  --font-ur: 'Noto Nastaliq Urdu', serif;
+}
+body{background:var(--bg);color:var(--text-dark);font-family:var(--font-ur);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:15px;}
+
+.calc-container {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border-radius: 28px;
+  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 22px 20px;
+  text-align: center;
+  color: white;
+}
+.header h1 { font-size: 26px; margin-bottom: 6px; font-weight: 700; }
+.header p { font-size: 13px; opacity: 0.85; }
+
+.body-content { padding: 26px 24px; }
+
+.form-group { margin-bottom: 22px; }
+.form-label { font-size: 17px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+
+select, input[type=number] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-size: 16px;
+  font-family: var(--font-ur);
+  outline: none;
+  background: #fefefe;
+  transition: 0.2s;
+}
+select:focus, input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+.row { display: flex; gap: 12px; }
+.col { flex: 1; }
+
+.dim-box {
+  background: #f1f5f9;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  margin: 8px 0 5px;
+}
+.helper-text { font-size: 11px; color: var(--text-muted); margin-top: 8px; display: block; }
+
+.btn-calc {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-family: var(--font-ur);
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: 12px;
+  box-shadow: 0 6px 14px rgba(37,99,235,0.25);
+}
+.btn-calc:hover { background: var(--primary-dark); transform: translateY(-2px); }
+.btn-calc:active { transform: translateY(0); }
+
+.result-box {
+  display: none;
+  margin-top: 28px;
+  background: #f0f7ff;
+  border-radius: 24px;
+  border: 1px solid var(--primary);
+  overflow: hidden;
+  animation: fadeIn 0.35s ease;
+}
+.result-box.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.rec-header {
+  background: #e6f0ff;
+  padding: 14px 18px;
+  border-bottom: 1px solid #cbdff2;
+  text-align: center;
+}
+.rec-badge {
+  display: inline-block;
+  background: var(--success);
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 14px;
+  border-radius: 40px;
+  letter-spacing: 0.5px;
+}
+.rec-text {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+  color: #065f46;
+}
+.result-amount { font-size: 34px; font-weight: 800; color: var(--primary); margin: 12px 0; text-align: center; font-family: monospace; }
+.detail-row { display: flex; justify-content: space-between; padding: 10px 18px; border-bottom: 1px solid #e2edf7; font-size: 14px; }
+.detail-row:last-child { border-bottom: none; }
+.weight-alert { background: #fffbeb; color: #b45309; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 20px; margin: 10px 18px; text-align: center; }
+.footer-note { font-size: 11px; text-align: center; margin-top: 18px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<div class="calc-container">
+  <div class="header">
+    <h1>سمارٹ ڈیلیوری کیلکولیٹر</h1>
+    <p>پوسٹ ایکس ریٹس · آپ کے لیے بہترین سروس تجویز</p>
+  </div>
+
+  <div class="body-content">
+    <div class="form-group">
+      <label class="form-label">📍 پارسل کی منزل:</label>
+      <select id="zone">
+        <option value="city">اسی شہر کے اندر (Same City)</option>
+        <option value="prov">اپنے صوبے کا دوسرا شہر (Same Province)</option>
+        <option value="inter" selected>دوسرے صوبے میں (Other Province)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">⚖️ اصل وزن (کلوگرام):</label>
+      <input type="number" id="actualWeight" value="1.0" step="0.1" min="0.1">
+    </div>
+
+    <div class="dim-box">
+      <label class="form-label">📏 ڈبے کا سائز (صرف انچ "Inches" میں):</label>
+      <div class="row">
+        <div class="col"><input type="number" id="length" placeholder="لمبائی L" step="any"></div>
+        <div class="col"><input type="number" id="width" placeholder="چوڑائی W" step="any"></div>
+        <div class="col"><input type="number" id="height" placeholder="اونچائی H" step="any"></div>
+      </div>
+      <span class="helper-text">* اگر ڈبہ بڑا ہے تو والومیٹرک وزن لاگو ہوگا۔</span>
+    </div>
+
+    <button class="btn-calc" onclick="calculateSmart()">🔍 بہترین ریٹ چیک کریں</button>
+
+    <div class="result-box" id="resultBox">
+      <div id="recommendationArea"></div>
+      <div class="result-amount" id="finalTotal">Rs. 0</div>
+      
+      <div class="detail-row">
+        <span>لاگو ہونے والا وزن:</span>
+        <span id="appliedWeight" style="font-family: monospace; font-weight: bold;">0 KG</span>
+      </div>
+      <div id="weightMsgArea" class="weight-alert" style="display: none;"></div>
+      
+      <div class="detail-row">
+        <span>منتخب کردہ سروس کی بنیادی چارجز:</span>
+        <span id="baseCharge">Rs. 0</span>
+      </div>
+      <div class="detail-row">
+        <span>فیول سرچارج (15%):</span>
+        <span id="fuelCharge">Rs. 0</span>
+      </div>
+      <div class="footer-note">✨ ہم نے آپ کے وزن اور زون کے مطابق سستا آپشن خود منتخب کر لیا ہے۔</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ----- Helper: Urdu digit conversion & number parsing -----
+  function toEnglishNumber(str) {
+    if (!str) return NaN;
+    const numMap = { '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9' };
+    let converted = '';
+    for (let ch of String(str)) {
+      converted += numMap[ch] || ch;
+    }
+    return parseFloat(converted);
+  }
+
+  // sanitize inputs for all number fields
+  function sanitizeNumberInputs() {
+    const weightInput = document.getElementById('actualWeight');
+    const lengthInp = document.getElementById('length');
+    const widthInp = document.getElementById('width');
+    const heightInp = document.getElementById('height');
+    
+    const inputs = [weightInput, lengthInp, widthInp, heightInp];
+    inputs.forEach(inp => {
+      if (!inp) return;
+      inp.addEventListener('input', function(e) {
+        let raw = this.value;
+        let hasUrdu = /[٠-٩]/.test(raw);
+        if (hasUrdu) {
+          let eng = toEnglishNumber(raw);
+          if (!isNaN(eng)) this.value = eng;
+          else this.value = raw.replace(/[٠-٩]/g, d => String.fromCharCode(d.charCodeAt(0)-1632));
+        }
+      });
+      inp.addEventListener('blur', function() {
+        let val = toEnglishNumber(this.value);
+        if (this.id === 'actualWeight') {
+          if (isNaN(val) || val <= 0) this.value = 0.5;
+          else if (val > 300) this.value = 300;
+          else this.value = val;
+        } else {
+          if (isNaN(val) || val < 0) this.value = '';
+          else if (val > 500) this.value = 500;
+          else if (val === 0) this.value = '';
+          else this.value = val;
+        }
+      });
+    });
+  }
+
+  // ---------- RATE LOGIC (exactly same as original + overland comparison) ----------
+  // Normal rate (existing)
+  function getNormalRate(weightKg, zone) {
+    let rate = 0;
+    if (zone === "city") {
+      if (weightKg <= 0.5) rate = 110;
+      else if (weightKg <= 1.0) rate = 120;
+      else rate = 120 + Math.ceil((weightKg - 1) / 0.5) * 60;
+    } 
+    else if (zone === "prov") {
+      if (weightKg <= 0.5) rate = 170;
+      else if (weightKg <= 1.0) rate = 180;
+      else rate = 180 + Math.ceil((weightKg - 1) / 0.5) * 80;
+    } 
+    else { // inter
+      if (weightKg <= 0.5) rate = 180;
+      else if (weightKg <= 1.0) rate = 190;
+      else rate = 190 + Math.ceil((weightKg - 1) / 0.5) * 100;
+    }
+    return rate;
+  }
+
+  // Overland rates (cheaper for heavy parcels)
+  function getOverlandRate(weightKg) {
+    if (weightKg <= 3) return 240;
+    if (weightKg <= 5) return 400;
+    return 400 + Math.ceil(weightKg - 5) * 80;
+  }
+
+  // Main smart calculation
+  function calculateSmart() {
+    // 1. get values
+    const zone = document.getElementById('zone').value;
+    let rawWeight = document.getElementById('actualWeight').value;
+    let actualWeight = toEnglishNumber(rawWeight);
+    if (isNaN(actualWeight) || actualWeight <= 0) actualWeight = 0.5;
+    if (actualWeight < 0.1) actualWeight = 0.1;
+    
+    let l = toEnglishNumber(document.getElementById('length').value) || 0;
+    let w = toEnglishNumber(document.getElementById('width').value) || 0;
+    let h = toEnglishNumber(document.getElementById('height').value) || 0;
+    
+    // volumetric weight (inches / 5000)
+    let volWeight = (l * w * h) / 5000;
+    if (volWeight < 0) volWeight = 0;
+    
+    let chargeableWeight = Math.max(actualWeight, volWeight);
+    let weightAlertMsg = "";
+    let showVolAlert = false;
+    if (volWeight > actualWeight && volWeight > 0.05) {
+      weightAlertMsg = "⚠️ والومیٹرک وزن (سائز) زیادہ ہونے کی وجہ سے چارجز بڑھ گئے ہیں۔";
+      showVolAlert = true;
+    }
+    
+    // 2. Calculate both options
+    let normalRate = getNormalRate(chargeableWeight, zone);
+    let overlandRate = (chargeableWeight >= 3) ? getOverlandRate(chargeableWeight) : Infinity;
+    
+    let selectedRate = normalRate;
+    let selectedServiceName = "معیاری ڈیلیوری (Standard)";
+    let recommendationText = "";
+    
+    // Smart decision: choose the cheaper one (overland only if weight >=3 and actually cheaper)
+    if (chargeableWeight >= 3 && overlandRate < normalRate) {
+      selectedRate = overlandRate;
+      selectedServiceName = "اوورلینڈ سروس (Overland) — بڑے پارسلز کے لیے سستا";
+      recommendationText = `✅ ہم تجویز کرتے ہیں: <strong>${selectedServiceName}</strong> — یہ آپ کو ${(normalRate - overlandRate).toFixed(0)} روپے بچاتا ہے۔`;
+    } 
+    else if (chargeableWeight >= 3 && overlandRate >= normalRate) {
+      recommendationText = `✅ تجویز: <strong>معیاری ڈیلیوری</strong> اس وزن کے لیے بہتر ہے (اوورلینڈ مہنگا ہے)۔`;
+      selectedServiceName = "معیاری ڈیلیوری (Standard)";
+    }
+    else if (chargeableWeight < 3) {
+      recommendationText = `💡 چھوٹے وزن کے لیے <strong>معیاری ڈیلیوری</strong> موزوں ہے۔ اوورلینڈ صرف 3KG+ پر لاگو ہوتی ہے۔`;
+      selectedServiceName = "معیاری ڈیلیوری (Standard)";
+    }
+    
+    // special case: if overland wasn't considered because weight <3
+    if (chargeableWeight < 3) {
+      // just normal
+      selectedRate = normalRate;
+    }
+    
+    // fuel surcharge 15%
+    let fuel = Math.round(selectedRate * 0.15);
+    let grandTotal = selectedRate + fuel;
+    
+    // ----- update UI with recommendation -----
+    const recArea = document.getElementById('recommendationArea');
+    recArea.innerHTML = `
+      <div class="rec-header">
+        <div class="rec-badge">✨ بہترین سروس تجویز</div>
+        <div class="rec-text">${recommendationText}</div>
+      </div>
+    `;
+    
+    // weight message
+    const weightMsgDiv = document.getElementById('weightMsgArea');
+    if (showVolAlert) {
+      weightMsgDiv.style.display = "block";
+      weightMsgDiv.innerHTML = weightAlertMsg;
+    } else {
+      weightMsgDiv.style.display = "none";
+    }
+    
+    document.getElementById('appliedWeight').innerText = chargeableWeight.toFixed(2) + " KG";
+    document.getElementById('baseCharge').innerHTML = "Rs. " + selectedRate.toLocaleString();
+    document.getElementById('fuelCharge').innerHTML = "Rs. " + fuel.toLocaleString();
+    document.getElementById('finalTotal').innerHTML = "Rs. " + grandTotal.toLocaleString();
+    
+    // show result box
+    const resultDiv = document.getElementById('resultBox');
+    resultDiv.classList.add('active');
+    
+    // small extra: if user wants to see which service gave the rate, we already showed in recommendation.
+  }
+  
+  // auto attach listeners & fix urdu input
+  document.addEventListener('DOMContentLoaded', function() {
+    sanitizeNumberInputs();
+    // add Enter key support
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(inp => {
+      inp.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') calculateSmart();
+      });
+    });
+  });
+  
+  window.calculateSmart = calculateSmart;
+</script>
+</body>
+</html>
