@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Affiliate Order Form - Send via WhatsApp</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background: white;
+            max-width: 550px;
+            width: 100%;
+            border-radius: 28px;
+            padding: 25px 20px 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+        .sub {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+        .input-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1e293b;
+            font-size: 14px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            font-size: 15px;
+            transition: 0.2s;
+            background: #f8fafc;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118,75,162,0.2);
+            background: white;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .row-2 {
+            display: flex;
+            gap: 12px;
+        }
+        .row-2 .input-group {
+            flex: 1;
+        }
+        button {
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 12px rgba(37,211,102,0.3);
+        }
+        button:hover {
+            transform: scale(0.98);
+            background: linear-gradient(to right, #128C7E, #075E54);
+        }
+        .whatsapp-icon {
+            font-size: 24px;
+        }
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 25px;
+        }
+        .required:after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>📦 آرڈر فارم (Affiliate)</h2>
+    <div class="sub">براہ کرم کسٹمر کی مکمل معلومات بھریں</div>
+
+    <form id="orderForm">
+        <!-- کسٹمر کا نام -->
+        <div class="input-group">
+            <label class="required">کسٹمر کا پورا نام</label>
+            <input type="text" id="customer_name" placeholder="مثلاً: علی احمد" required>
+        </div>
+
+        <!-- موبائل نمبر (اصلی) -->
+        <div class="input-group">
+            <label class="required">کسٹمر کا موبائل نمبر</label>
+            <input type="tel" id="customer_phone" placeholder="03XXXXXXXXX" required>
+        </div>
+
+        <!-- دوسرا نمبر (اختیاری) -->
+        <div class="input-group">
+            <label>دوسرا نمبر (اختیاری)</label>
+            <input type="tel" id="alt_phone" placeholder="0312xxxxxxx">
+        </div>
+
+        <!-- پروڈکٹ کا نام -->
+        <div class="input-group">
+            <label class="required">پروڈکٹ کا نام</label>
+            <input type="text" id="product_name" placeholder="مثلاً: وائرلیس ہیڈفون" required>
+        </div>
+
+        <!-- پروڈکٹ کوڈ / آئی ڈی -->
+        <div class="input-group">
+            <label class="required">پروڈکٹ کوڈ / ID</label>
+            <input type="text" id="product_code" placeholder="مثلاً: WH-101" required>
+        </div>
+
+        <!-- مکمل ایڈریس -->
+        <div class="input-group">
+            <label class="required">مکمل ایڈریس (گھر/دفتر، علاقہ، نشانی)</label>
+            <textarea id="address" placeholder="ہاؤس نمبر، سٹریٹ، سیکٹر، لینڈ مارک" required></textarea>
+        </div>
+
+        <!-- شہر -->
+        <div class="row-2">
+            <div class="input-group">
+                <label class="required">شہر</label>
+                <input type="text" id="city" placeholder="کراچی / لاہور" required>
+            </div>
+            <div class="input-group">
+                <label class="required">پوسٹل کوڈ (اگر معلوم ہو)</label>
+                <input type="text" id="postal" placeholder="اختیاری">
+            </div>
+        </div>
+
+        <!-- اضافی نوٹس (کسٹمر کی ڈسکرپشن) -->
+        <div class="input-group">
+            <label>کسٹمر کی خصوصی ہدایات / نوٹس</label>
+            <textarea id="notes" placeholder="مثلاً: کال کرنے کا بہتر وقت، گیٹ نمبر وغیرہ"></textarea>
+        </div>
+
+        <!-- بٹن -->
+        <button type="button" id="sendWhatsAppBtn">
+            <span class="whatsapp-icon">💚</span> واٹس ایپ پر بھیجیں
+        </button>
+        <footer>
+            🔁 بٹن دبانے سے WhatsApp کھلے گا -> آپ کو مکمل آرڈر کی تفصیل بھیج دی جائے گی
+        </footer>
+    </form>
+</div>
+
+<script>
+    // آپ کا WhatsApp نمبر (انٹرنیشنل فارمیٹ میں بغیر صفر اور + کے)
+    const YOUR_WHATSAPP_NUMBER = "923125540048";   // 92 کے بعد 3125540048
+
+    document.getElementById("sendWhatsAppBtn").addEventListener("click", function() {
+        // تمام فیلڈز کی ویلیوز لیں
+        let customerName = document.getElementById("customer_name").value.trim();
+        let customerPhone = document.getElementById("customer_phone").value.trim();
+        let altPhone = document.getElementById("alt_phone").value.trim();
+        let productName = document.getElementById("product_name").value.trim();
+        let productCode = document.getElementById("product_code").value.trim();
+        let address = document.getElementById("address").value.trim();
+        let city = document.getElementById("city").value.trim();
+        let postal = document.getElementById("postal").value.trim();
+        let notes = document.getElementById("notes").value.trim();
+
+        // ضروری فیلڈز چیک کریں
+        if (!customerName || !customerPhone || !productName || !productCode || !address || !city) {
+            alert("❌ براہ کرم تمام ضروری فیلڈز بھریں (ستارے والے)");
+            return;
+        }
+
+        // فون نمبر کی بنیادی جانچ (پاکستانی)
+        let phoneRegex = /^03[0-9]{9}$/;
+        if (!phoneRegex.test(customerPhone)) {
+            alert("❌ کسٹمر کا موبائل نمبر درست نہیں (0300xxxxxxx کی شکل میں لکھیں)");
+            return;
+        }
+
+        // ایک خوبصورت میسج بنائیں
+        let message = "🆕 *نیا آرڈر موصول ہوا* 🆕\n\n";
+        message += `👤 *کسٹمر نام:* ${customerName}\n`;
+        message += `📞 *موبائل:* ${customerPhone}\n`;
+        if (altPhone) message += `🔄 *دوسرا نمبر:* ${altPhone}\n`;
+        message += `📦 *پروڈکٹ:* ${productName}\n`;
+        message += `🔢 *پروڈکٹ کوڈ:* ${productCode}\n`;
+        message += `📍 *پتہ:* ${address}\n`;
+        message += `🏙️ *شہر:* ${city}`;
+        if (postal) message += ` (${postal})`;
+        message += `\n\n`;
+        if (notes) message += `📝 *خصوصی ہدایات:* ${notes}\n\n`;
+        message += `✅ آرڈر کی تصدیق کریں اور ڈیلیوری ایڈریس چیک کریں۔\n`;
+        message += `📅 تاریخ: ${new Date().toLocaleString('ur-PK')}`;
+
+        // WhatsApp URL بنائیں (ٹیکسٹ کو انکوڈ کریں)
+        let whatsappUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        
+        // نیا ٹیب کھولیں (واٹس ایپ ویب یا موبائل ایپ کھلے گا)
+        window.open(whatsappUrl, '_blank');
+    });
+</script>
+</body>
+</html>
