@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Affiliate Order Form - قیمت کے ساتھ آرڈر | WhatsApp</title>
+    <title>Affiliate Order Form - قیمت، تعداد، وزن کے ساتھ آرڈر | WhatsApp</title>
     <style>
         * {
             box-sizing: border-box;
@@ -20,7 +20,7 @@
         }
         .form-container {
             background: white;
-            max-width: 550px;
+            max-width: 850px;
             width: 100%;
             border-radius: 28px;
             padding: 25px 20px 35px;
@@ -111,13 +111,13 @@
             content: " *";
             color: red;
         }
-        /* کل رقم والے باکس کا انداز - صرف تھوڑا نمایاں، ڈیزائن میں کوئی تبدیلی نہیں */
         .total-box {
             background: #f1f5f9;
             border-radius: 20px;
             padding: 12px 16px;
             margin-top: 5px;
             border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
         }
         .total-label {
             font-weight: 700;
@@ -144,49 +144,118 @@
         input[type=number]::-webkit-outer-spin-button {
             opacity: 0.5;
         }
+        /* پروڈکٹ کارڈ اسٹائل */
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 6px;
+        }
+        .product-title {
+            font-weight: 800;
+            color: #334155;
+            font-size: 16px;
+        }
+        .remove-product {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            width: auto;
+            box-shadow: none;
+            margin-top: 0;
+        }
+        .remove-product:hover {
+            background: #fecaca;
+            transform: scale(0.96);
+        }
+        .product-row-2 {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .product-row-2 .input-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        .inline-total {
+            font-size: 13px;
+            background: #eef2ff;
+            padding: 6px 10px;
+            border-radius: 20px;
+            color: #1e3a8a;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .add-product-btn {
+            background: #4b5563;
+            background: linear-gradient(135deg, #4b5563, #374151);
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-shadow: none;
+        }
+        .add-product-btn:hover {
+            background: #2d3748;
+        }
+        .weight-summary {
+            background: #e6f7ec;
+            border-radius: 20px;
+            padding: 10px 16px;
+            margin-top: 10px;
+            border-right: 3px solid #2e7d32;
+        }
+        hr {
+            margin: 15px 0;
+            border-color: #e2e8f0;
+        }
     </style>
 </head>
 <body>
 <div class="form-container">
     <h2>📦 آرڈر فارم (Affiliate)</h2>
-    <div class="sub">براہ کرم کسٹمر کی مکمل معلومات اور قیمت بھریں</div>
+    <div class="sub">پروڈکٹ کی تعداد، وزن اور متعدد اشیاء شامل کریں</div>
 
     <form id="orderForm">
-        <!-- کسٹمر کا نام -->
+        <!-- کسٹمر کی معلومات -->
         <div class="input-group">
             <label class="required">کسٹمر کا پورا نام</label>
             <input type="text" id="customer_name" placeholder="مثلاً: علی احمد" required>
         </div>
 
-        <!-- موبائل نمبر (اصلی) -->
         <div class="input-group">
             <label class="required">کسٹمر کا موبائل نمبر</label>
             <input type="tel" id="customer_phone" placeholder="03XXXXXXXXX" required>
         </div>
 
-        <!-- دوسرا نمبر (اختیاری) -->
         <div class="input-group">
-            <label>دوسرا نمبر (اختیاری)</label>
-            <input type="tel" id="alt_phone" placeholder="0312xxxxxxx">
+            <label class="required">مکمل ایڈریس (گھر/دفتر، علاقہ، نشانی)</label>
+            <textarea id="address" placeholder="ہاؤس نمبر، سٹریٹ، سیکٹر، لینڈ مارک" required></textarea>
         </div>
 
-        <!-- پروڈکٹ کا نام -->
-        <div class="input-group">
-            <label class="required">پروڈکٹ کا نام</label>
-            <input type="text" id="product_name" placeholder="مثلاً: وائرلیس ہیڈفون" required>
-        </div>
-
-        <!-- پروڈکٹ کوڈ / آئی ڈی -->
-        <div class="input-group">
-            <label class="required">پروڈکٹ کوڈ / ID</label>
-            <input type="text" id="product_code" placeholder="مثلاً: WH-101" required>
-        </div>
-
-        <!-- ========== نیا سیکشن: قیمت اور ڈلیوری چارجز + خودکار کل ========== -->
         <div class="row-2">
             <div class="input-group">
-                <label class="required">پروڈکٹ کی قیمت (روپے میں)</label>
-                <input type="number" id="product_price" placeholder="مثلاً: 2500" step="1" value="0" required>
+                <label class="required">شہر</label>
+                <input type="text" id="city" placeholder="کراچی / لاہور" required>
             </div>
             <div class="input-group">
                 <label>ڈلیوری چارجز (روپے میں)</label>
@@ -194,165 +263,397 @@
             </div>
         </div>
 
-        <!-- خودکار کل قیمت ڈسپلے -->
+        <!-- ========== مصنوعات کا متحرک حصہ ========== -->
+        <div id="productsContainer">
+            <!-- یہاں پروڈکٹ کارڈز ڈائنامک طور پر شامل ہوں گے -->
+        </div>
+
+        <button type="button" id="addProductBtn" class="add-product-btn">➕ مزید پروڈکٹ شامل کریں</button>
+
+        <!-- خلاصہ وزن اور کل قیمت -->
         <div class="total-box">
-            <div class="total-label">💵 کل قیمت (خودکار حساب)</div>
+            <div class="total-label">📦 کل وزن (تمام مصنوعات کا)</div>
             <div class="total-amount">
-                <span id="total_amount">0</span> <span class="total-currency">روپے</span>
+                <span id="totalWeight">0</span> <span class="total-currency">کلوگرام (kg)</span>
             </div>
-            <div style="font-size: 12px; color: #4b5563; margin-top: 6px;">پروڈکٹ قیمت + ڈلیوری چارجز = کل رقم</div>
+            <div style="font-size: 12px; color: #4b5563;">ہر پروڈکٹ کے وزن × تعداد = مجموعی وزن</div>
         </div>
 
-        <!-- مکمل ایڈریس -->
-        <div class="input-group">
-            <label class="required">مکمل ایڈریس (گھر/دفتر، علاقہ، نشانی)</label>
-            <textarea id="address" placeholder="ہاؤس نمبر، سٹریٹ، سیکٹر، لینڈ مارک" required></textarea>
+        <div class="total-box">
+            <div class="total-label">💰 آرڈر کی مجموعی قیمت</div>
+            <div class="total-amount">
+                <span id="totalOrderAmount">0</span> <span class="total-currency">روپے</span>
+            </div>
+            <div style="font-size: 12px; color: #4b5563;">(پروڈکٹس کی کل قیمت + ڈلیوری چارجز)</div>
         </div>
 
-        <!-- شہر -->
-        <div class="row-2">
-            <div class="input-group">
-                <label class="required">شہر</label>
-                <input type="text" id="city" placeholder="کراچی / لاہور" required>
-            </div>
-            <div class="input-group">
-                <label class="required">پوسٹل کوڈ (اگر معلوم ہو)</label>
-                <input type="text" id="postal" placeholder="اختیاری">
-            </div>
-        </div>
-
-        <!-- اضافی نوٹس (کسٹمر کی ڈسکرپشن) -->
+        <!-- اضافی نوٹس -->
         <div class="input-group">
             <label>کسٹمر کی خصوصی ہدایات / نوٹس</label>
             <textarea id="notes" placeholder="مثلاً: کال کرنے کا بہتر وقت، گیٹ نمبر وغیرہ"></textarea>
         </div>
 
-        <!-- بٹن -->
+        <!-- واٹس ایپ بٹن -->
         <button type="button" id="sendWhatsAppBtn">
-            <span class="whatsapp-icon">💚</span> واٹس ایپ پر بھیجیں
+            <span class="whatsapp-icon">💚</span> واٹس ایپ پر بھیجیں (مکمل آرڈر)
         </button>
         <footer>
-            🔁 بٹن دبانے سے WhatsApp کھلے گا -> آرڈر کی مکمل تفصیل (قیمت + ڈلیوری + کل) بھیج دی جائے گی
+            🔁 ہر پروڈکٹ کی تعداد اور وزن شامل کریں۔ کل وزن خودکار حساب ہوگا۔ آرڈر واٹس ایپ پر بھیجیں۔
         </footer>
     </form>
 </div>
 
 <script>
-    // آپ کا WhatsApp نمبر (انٹرنیشنل فارمیٹ میں بغیر صفر اور + کے)
-    const YOUR_WHATSAPP_NUMBER = "923125540048";   // 92 کے بعد 3125540048
+    // آپ کا WhatsApp نمبر
+    const YOUR_WHATSAPP_NUMBER = "923125540048";
 
-    // تمام DOM عناصر
-    const productPriceInput = document.getElementById("product_price");
-    const deliveryChargesInput = document.getElementById("delivery_charges");
-    const totalAmountSpan = document.getElementById("total_amount");
+    // مصنوعات کا کنٹینر اور متغیرات
+    const productsContainer = document.getElementById('productsContainer');
+    const addProductBtn = document.getElementById('addProductBtn');
+    const totalWeightSpan = document.getElementById('totalWeight');
+    const totalOrderAmountSpan = document.getElementById('totalOrderAmount');
+    const deliveryChargesInput = document.getElementById('delivery_charges');
 
-    // فنکشن: کل قیمت خودکار اپڈیٹ (پروڈکٹ پرائس + ڈلیوری)
-    function updateTotalPrice() {
-        let productPrice = parseFloat(productPriceInput.value);
+    let productCount = 0;   // منفرد شناخت کے لیے
+
+    // تمام مصنوعات کی کل رقم اور وزن کا حساب لگانے والا فنکشن
+    function recalculateTotals() {
+        let totalWeight = 0;
+        let totalProductsPrice = 0; // تمام پروڈکٹس کی (قیمت × تعداد)
+
+        // تمام پروڈکٹ کارڈز پر لوپ
+        const productCards = document.querySelectorAll('.product-card');
+        for (let card of productCards) {
+            // ہر کارڈ کے اندر فیلڈز
+            const priceInput = card.querySelector('.product-price');
+            const quantityInput = card.querySelector('.product-quantity');
+            const weightInput = card.querySelector('.product-weight');
+
+            let price = parseFloat(priceInput?.value);
+            let quantity = parseFloat(quantityInput?.value);
+            let weightPerUnit = parseFloat(weightInput?.value);
+
+            if (isNaN(price)) price = 0;
+            if (isNaN(quantity)) quantity = 0;
+            if (isNaN(weightPerUnit)) weightPerUnit = 0;
+            if (quantity < 0) quantity = 0;
+            if (price < 0) price = 0;
+            if (weightPerUnit < 0) weightPerUnit = 0;
+
+            const lineTotal = price * quantity;
+            totalProductsPrice += lineTotal;
+            totalWeight += (weightPerUnit * quantity);
+
+            // لائن کل دکھائیں (اختیاری: ہر کارڈ میں ایک چھوٹا سا total دکھائیں)
+            const lineTotalSpan = card.querySelector('.line-total-value');
+            if (lineTotalSpan) {
+                lineTotalSpan.innerText = Math.floor(lineTotal);
+            }
+            const lineWeightSpan = card.querySelector('.line-weight-value');
+            if (lineWeightSpan) {
+                lineWeightSpan.innerText = (weightPerUnit * quantity).toFixed(2);
+            }
+        }
+
+        // ڈلیوری چارجز
         let delivery = parseFloat(deliveryChargesInput.value);
-        
-        // اگر ویلیو NaN ہو تو صفر سیٹ کریں
-        if (isNaN(productPrice)) productPrice = 0;
         if (isNaN(delivery)) delivery = 0;
-        
-        // منفی نمبر نہ ہو تو بہتر ہے، لیکن صارف کو روکنے کے لیے ہم صفر سے کم نہ ہونے دیں
-        if (productPrice < 0) productPrice = 0;
         if (delivery < 0) delivery = 0;
-        
-        let total = productPrice + delivery;
-        // کل رقم کو عدد (integer) کی شکل میں دکھائیں
-        totalAmountSpan.innerText = Math.floor(total);
+
+        const grandTotal = totalProductsPrice + delivery;
+        totalOrderAmountSpan.innerText = Math.floor(grandTotal);
+        totalWeightSpan.innerText = totalWeight.toFixed(2);
     }
 
-    // دونوں ان پٹس پر ایونٹ لگائیں (ریئل ٹائم کل)
-    if (productPriceInput) {
-        productPriceInput.addEventListener("input", function() {
-            // اگر صارف خالی چھوڑ دے تو 0 کر دیں
-            if (productPriceInput.value === "") productPriceInput.value = 0;
-            updateTotalPrice();
-        });
-    }
-    if (deliveryChargesInput) {
-        deliveryChargesInput.addEventListener("input", function() {
-            if (deliveryChargesInput.value === "") deliveryChargesInput.value = 0;
-            updateTotalPrice();
-        });
-    }
-    
-    // صفحہ لوڈ ہوتے ہی کل قیمت سیٹ کریں
-    updateTotalPrice();
+    // نئی پروڈکٹ کارڈ بنانے کا فنکشن
+    function createProductCard(productIndex) {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'product-card';
+        cardDiv.setAttribute('data-idx', productIndex);
 
-    // واٹس ایپ بھیجنے کا فنکشن
-    document.getElementById("sendWhatsAppBtn").addEventListener("click", function() {
-        // تمام فیلڈز کی ویلیوز لیں
-        let customerName = document.getElementById("customer_name").value.trim();
-        let customerPhone = document.getElementById("customer_phone").value.trim();
-        let altPhone = document.getElementById("alt_phone").value.trim();
-        let productName = document.getElementById("product_name").value.trim();
-        let productCode = document.getElementById("product_code").value.trim();
-        let address = document.getElementById("address").value.trim();
-        let city = document.getElementById("city").value.trim();
-        let postal = document.getElementById("postal").value.trim();
-        let notes = document.getElementById("notes").value.trim();
-        
-        // قیمت والے فیلڈز
-        let productPriceRaw = document.getElementById("product_price").value.trim();
-        let deliveryRaw = document.getElementById("delivery_charges").value.trim();
-        
-        // کل قیمت موجودہ ڈسپلے سے بھی لے سکتے ہیں لیکن بہتر ہے کہ دوبارہ حساب کریں
-        let productPrice = parseFloat(productPriceRaw);
-        let deliveryCharge = parseFloat(deliveryRaw);
-        if (isNaN(productPrice)) productPrice = 0;
-        if (isNaN(deliveryCharge)) deliveryCharge = 0;
-        if (productPrice < 0) productPrice = 0;
-        if (deliveryCharge < 0) deliveryCharge = 0;
-        let totalPrice = productPrice + deliveryCharge;
-        
-        // === ضروری فیلڈز کی جانچ (پرانا + نئی قیمت) ===
-        if (!customerName || !customerPhone || !productName || !productCode || !address || !city) {
-            alert("❌ براہ کرم تمام ضروری فیلڈز بھریں (ستارے والے)");
-            return;
+        cardDiv.innerHTML = `
+            <div class="product-header">
+                <span class="product-title">📦 پروڈکٹ #${productIndex+1}</span>
+                <button type="button" class="remove-product" title="یہ پروڈکٹ ہٹائیں">✖ ہٹائیں</button>
+            </div>
+            <div class="product-row-2">
+                <div class="input-group">
+                    <label>پروڈکٹ کا نام *</label>
+                    <input type="text" class="product-name" placeholder="مثلاً: وائرلیس ہیڈفون" required>
+                </div>
+                <div class="input-group">
+                    <label>پروڈکٹ کوڈ / ID *</label>
+                    <input type="text" class="product-code" placeholder="مثلاً: WH-101" required>
+                </div>
+            </div>
+            <div class="product-row-2">
+                <div class="input-group">
+                    <label>فی یونٹ قیمت (روپے) *</label>
+                    <input type="number" class="product-price" placeholder="مثلاً: 2500" step="1" value="0" required>
+                </div>
+                <div class="input-group">
+                    <label>تعداد (Quantity) *</label>
+                    <input type="number" class="product-quantity" placeholder="مثلاً: 2" step="1" value="1" min="1" required>
+                </div>
+                <div class="input-group">
+                    <label>وزن فی یونٹ (کلوگرام) *</label>
+                    <input type="number" class="product-weight" placeholder="مثلاً: 0.5" step="0.1" value="0" required>
+                </div>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: space-between; align-items: center; margin-top: 6px;">
+                <span class="inline-total">💰 اس پروڈکٹ کی کل رقم: <span class="line-total-value">0</span> روپے</span>
+                <span class="inline-total">⚖️ وزن (کل): <span class="line-weight-value">0.00</span> kg</span>
+            </div>
+        `;
+
+        // ہر کارڈ کے اندر ان پٹس پر event listeners لگانے کے لیے
+        const inputs = cardDiv.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => recalculateTotals());
+        });
+
+        // ریموو بٹن
+        const removeBtn = cardDiv.querySelector('.remove-product');
+        removeBtn.addEventListener('click', function(e) {
+            cardDiv.remove();
+            // کارڈز کے نمبر دوبارہ ترتیب دیں (صارفین کے لیے ظاہری نمبر بہتر)
+            reindexProductNumbers();
+            recalculateTotals();
+            validateAtLeastOneProduct();
+        });
+
+        return cardDiv;
+    }
+
+    // پروڈکٹ کارڈز کے نمبر دوبارہ ترتیب دیں (1,2,3...)
+    function reindexProductNumbers() {
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach((card, idx) => {
+            const titleSpan = card.querySelector('.product-title');
+            if (titleSpan) {
+                titleSpan.innerText = `📦 پروڈکٹ #${idx+1}`;
+            }
+            card.setAttribute('data-idx', idx);
+        });
+    }
+
+    // کم از کم ایک پروڈکٹ ہونا لازمی
+    function validateAtLeastOneProduct() {
+        const cards = document.querySelectorAll('.product-card');
+        if (cards.length === 0) {
+            // اگر کوئی پروڈکٹ نہ ہو تو ڈیفالٹ ایک شامل کریں
+            addNewProductCard();
         }
-        
-        // پروڈکٹ کی قیمت کی خاص جانچ (صارف نے ڈالی یا نہیں)
-        if (productPriceRaw === "" || productPriceRaw === null || isNaN(parseFloat(productPriceRaw)) || parseFloat(productPriceRaw) <= 0) {
-            alert("❌ براہ کرم پروڈکٹ کی درست قیمت درج کریں (0 سے زیادہ)");
-            return;
+    }
+
+    // نئی پروڈکٹ شامل کرنا
+    function addNewProductCard() {
+        const currentCards = document.querySelectorAll('.product-card');
+        const newIndex = currentCards.length;
+        const newCard = createProductCard(newIndex);
+        productsContainer.appendChild(newCard);
+        recalculateTotals();
+    }
+
+    // پہلی پروڈکٹ ڈیفالٹ کے طور پر بنائیں
+    function initializeProducts() {
+        productsContainer.innerHTML = '';
+        const firstCard = createProductCard(0);
+        productsContainer.appendChild(firstCard);
+        recalculateTotals();
+    }
+
+    // ڈیلیوری چارجز میں تبدیلی پر دوبارہ حساب
+    deliveryChargesInput.addEventListener('input', () => recalculateTotals());
+
+    // ایونٹ: مزید پروڈکٹ کا بٹن
+    addProductBtn.addEventListener('click', () => {
+        addNewProductCard();
+    });
+
+    // واٹس ایپ میسج بنانے کا فنکشن (تمام مصنوعات, وزن, کل کے ساتھ)
+    function generateWhatsAppMessage() {
+        // بنیادی معلومات
+        const customerName = document.getElementById('customer_name').value.trim();
+        const customerPhone = document.getElementById('customer_phone').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const city = document.getElementById('city').value.trim();
+        const notes = document.getElementById('notes').value.trim();
+        let delivery = parseFloat(deliveryChargesInput.value);
+        if (isNaN(delivery)) delivery = 0;
+
+        // مصنوعات کی تفصیل اکٹھا کریں
+        const productCards = document.querySelectorAll('.product-card');
+        if (productCards.length === 0) {
+            alert("❌ کم از کم ایک پروڈکٹ شامل کریں");
+            return null;
         }
-        
-        // فون نمبر کی بنیادی جانچ (پاکستانی)
-        let phoneRegex = /^03[0-9]{9}$/;
-        if (!phoneRegex.test(customerPhone)) {
-            alert("❌ کسٹمر کا موبائل نمبر درست نہیں (0300xxxxxxx کی شکل میں لکھیں)");
-            return;
+
+        let productsDetails = [];
+        let totalProductsPriceSum = 0;
+        let totalWeightSum = 0;
+
+        for (let card of productCards) {
+            const name = card.querySelector('.product-name')?.value.trim();
+            const code = card.querySelector('.product-code')?.value.trim();
+            let price = parseFloat(card.querySelector('.product-price')?.value);
+            let quantity = parseFloat(card.querySelector('.product-quantity')?.value);
+            let weightPerUnit = parseFloat(card.querySelector('.product-weight')?.value);
+            if (isNaN(price)) price = 0;
+            if (isNaN(quantity)) quantity = 0;
+            if (isNaN(weightPerUnit)) weightPerUnit = 0;
+
+            if (!name || !code) {
+                alert("⚠️ براہ کرم ہر پروڈکٹ کا نام اور کوڈ ضرور بھریں");
+                return null;
+            }
+            if (price <= 0) {
+                alert(`⚠️ پروڈکٹ "${name}" کی قیمت درست کریں (0 سے زیادہ)`);
+                return null;
+            }
+            if (quantity < 1) {
+                alert(`⚠️ پروڈکٹ "${name}" کی تعداد کم از کم 1 ہونی چاہیے`);
+                return null;
+            }
+
+            const lineTotal = price * quantity;
+            const lineWeight = weightPerUnit * quantity;
+            totalProductsPriceSum += lineTotal;
+            totalWeightSum += lineWeight;
+
+            productsDetails.push({
+                name, code, price, quantity, weightPerUnit, lineTotal, lineWeight
+            });
         }
-        
-        // ڈلیوری چارجز اگر منفی یا NaN ہو تو صفر سیٹ کر دیا پہلے ہی، یہاں کوئی الرٹ نہیں
-        
-        // خوبصورت میسج بنائیں (اب قیمت اور کل کے ساتھ)
+
+        // کل آرڈر رقم
+        const grandTotal = totalProductsPriceSum + delivery;
+
+        // میسج بنائیں
         let message = "🆕 *نیا آرڈر موصول ہوا* 🆕\n\n";
         message += `👤 *کسٹمر نام:* ${customerName}\n`;
         message += `📞 *موبائل:* ${customerPhone}\n`;
-        if (altPhone) message += `🔄 *دوسرا نمبر:* ${altPhone}\n`;
-        message += `📦 *پروڈکٹ:* ${productName}\n`;
-        message += `🔢 *پروڈکٹ کوڈ:* ${productCode}\n`;
-        // قیمت کی تفصیلات
-        message += `💰 *پروڈکٹ قیمت:* Rs. ${Math.floor(productPrice)}\n`;
-        message += `🚚 *ڈلیوری چارجز:* Rs. ${Math.floor(deliveryCharge)}\n`;
-        message += `💵 *کل رقم (پروڈکٹ+ڈلیوری):* Rs. ${Math.floor(totalPrice)}\n`;
-        message += `📍 *پتہ:* ${address}\n`;
-        message += `🏙️ *شہر:* ${city}`;
-        if (postal) message += ` (${postal})`;
-        message += `\n\n`;
-        if (notes) message += `📝 *خصوصی ہدایات:* ${notes}\n\n`;
-        message += `✅ آرڈر کی تصدیق کریں اور ڈیلیوری ایڈریس چیک کریں۔\n`;
+        message += `📍 *پتہ:* ${address}, ${city}\n`;
+        
+        // مصنوعات کی تفصیل
+        message += `\n📋 *مصنوعات کی تفصیل:*\n`;
+        productsDetails.forEach((prod, idx) => {
+            message += `\n${idx+1}. *${prod.name}* (کوڈ: ${prod.code})\n`;
+            message += `   ➤ قیمت/یونٹ: Rs. ${Math.floor(prod.price)}\n`;
+            message += `   ➤ تعداد: ${prod.quantity} عدد\n`;
+            message += `   ➤ وزن فی یونٹ: ${prod.weightPerUnit.toFixed(2)} kg\n`;
+            message += `   ➤ کل وزن (اس آئٹم کا): ${prod.lineWeight.toFixed(2)} kg\n`;
+            message += `   ➤ اس آئٹم کی کل قیمت: Rs. ${Math.floor(prod.lineTotal)}\n`;
+        });
+        
+        message += `\n⚖️ *مجموعی وزن (تمام اشیاء):* ${totalWeightSum.toFixed(2)} kg\n`;
+        message += `💰 *پروڈکٹس کی کل قیمت:* Rs. ${Math.floor(totalProductsPriceSum)}\n`;
+        message += `🚚 *ڈلیوری چارجز:* Rs. ${Math.floor(delivery)}\n`;
+        message += `💵 *آرڈر کی کل ادائیگی:* Rs. ${Math.floor(grandTotal)}\n`;
+        
+        if (notes) {
+            message += `\n📝 *کسٹمر نوٹس:* ${notes}\n`;
+        }
+        message += `\n✅ آرڈر کی تصدیق کریں اور ڈیلیوری ایڈریس چیک کریں۔\n`;
         message += `📅 تاریخ: ${new Date().toLocaleString('ur-PK')}`;
-        
-        // واٹس ایپ لنک بنائیں
-        let whatsappUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-        
-        // نیا ٹیب کھولیں
+
+        return message;
+    }
+
+    // بنیادی ویلیڈیشن (نام، فون، ایڈریس، شہر)
+    function validateBasicFields() {
+        const name = document.getElementById('customer_name').value.trim();
+        const phone = document.getElementById('customer_phone').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const city = document.getElementById('city').value.trim();
+
+        if (!name || !phone || !address || !city) {
+            alert("❌ براہ کرم تمام ضروری فیلڈز بھریں (نام، فون، پتہ، شہر)");
+            return false;
+        }
+        const phoneRegex = /^03[0-9]{9}$/;
+        if (!phoneRegex.test(phone)) {
+            alert("❌ کسٹمر کا موبائل نمبر درست نہیں (0300xxxxxxx کی شکل میں لکھیں)");
+            return false;
+        }
+        return true;
+    }
+
+    // ہر پروڈکٹ کی ضروری فیلڈز کی جانچ generateMessage میں ہو رہی ہے، لیکن یہاں پہلے سے بھی چیک کریں
+    function validateProductsComplete() {
+        const productCards = document.querySelectorAll('.product-card');
+        if (productCards.length === 0) {
+            alert("❌ کم از کم ایک پروڈکٹ شامل کرنا ضروری ہے۔");
+            return false;
+        }
+        for (let i = 0; i < productCards.length; i++) {
+            const card = productCards[i];
+            const pName = card.querySelector('.product-name')?.value.trim();
+            const pCode = card.querySelector('.product-code')?.value.trim();
+            const price = parseFloat(card.querySelector('.product-price')?.value);
+            const qty = parseFloat(card.querySelector('.product-quantity')?.value);
+            if (!pName || !pCode) {
+                alert(`⚠️ پروڈکٹ ${i+1} کا نام اور کوڈ دونوں ضروری ہیں۔`);
+                return false;
+            }
+            if (isNaN(price) || price <= 0) {
+                alert(`⚠️ پروڈکٹ "${pName}" کی قیمت درست کریں (زیادہ از 0)`);
+                return false;
+            }
+            if (isNaN(qty) || qty < 1) {
+                alert(`⚠️ پروڈکٹ "${pName}" کی تعداد کم از کم 1 ہونی چاہیے۔`);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // بھیجنے کا عمل
+    document.getElementById("sendWhatsAppBtn").addEventListener("click", function() {
+        // بنیادی معلومات کی جانچ
+        if (!validateBasicFields()) return;
+        if (!validateProductsComplete()) return;
+
+        const message = generateWhatsAppMessage();
+        if (!message) return;
+
+        const whatsappUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
+    });
+
+    // شروع میں پروڈکٹس اور ایونٹ سیٹ اپ
+    initializeProducts();
+
+    // اگر ڈیلیوری چارجز پہلے سے صفر ہو تو بھی حساب
+    // اضافی طور پر جب کسی پروڈکٹ کو ہٹائیں تو دوبارہ رینڈر، اور recalculate ہوگا، لیکن ریموو بٹن event delegation سے کام کرتا ہے
+    // مزید محفوظ: mutation observer یا پہلے سے set. چونکہ ریموو بٹن پر event لگ چکے ہیں، ٹھیک ہے
+    // اس کے علاوہ quantity, price, weight پر event listeners لگ چکے ہیں.
+    // جب addProductBtn سے نئی پروڈکٹ آئے گی تو اس کے inputs پر بھی event لگیں گے createProductCard کے اندر
+    // ڈیلیوری چارجز کا event لگ چکا ہے
+    // تمام کام درست ہے
+
+    // اگر صارف غلطی سے سارے پروڈکٹ ہٹا دے تو خودکار ایک نیا شامل کرنے کے لیے
+    function checkAndAddDefaultProduct() {
+        const cards = document.querySelectorAll('.product-card');
+        if (cards.length === 0) {
+            addNewProductCard();
+        }
+    }
+
+    // ہر بار ہٹانے کے بعد چیک کریں
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                checkAndAddDefaultProduct();
+                recalculateTotals();
+            }
+        });
+    });
+    observer.observe(productsContainer, { childList: true, subtree: false });
+
+    // مزید: جب صفحہ لوڈ ہو تو پہلی پروڈکٹ کے اندر event ٹھیک سے کام کرے
+    window.addEventListener('load', () => {
+        recalculateTotals();
     });
 </script>
 </body>
