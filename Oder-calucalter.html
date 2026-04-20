@@ -2,127 +2,147 @@
 <html lang="ur" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>آرڈر کیلکولیٹر — سہیل بزنس</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>سہیل بزنس | آرڈر کیلکولیٹر</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0f1e;
-    --card: #111827;
-    --border: #1e293b;
-    --accent: #00d4aa;
-    --accent2: #f59e0b;
-    --danger: #ef4444;
-    --text: #f1f5f9;
-    --muted: #64748b;
-    --green: #10b981;
-    --blue: #3b82f6;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-app: #050a14;
+    --surface: #0f172f;
+    --surface-elevated: #111b2e;
+    --border: #1e2a3e;
+    --border-light: #243347;
+    --accent-primary: #00e6c3;
+    --accent-primary-dark: #00c4a5;
+    --accent-secondary: #f5a623;
+    --danger: #ff6b6b;
+    --success: #2ecc71;
+    --info: #3b82f6;
+    --text-primary: #f0f3fa;
+    --text-secondary: #9ca3bf;
+    --text-muted: #6c7a91;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+    --radius-md: 1rem;
+    --radius-lg: 1.25rem;
+    --transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
 
   body {
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg-app);
+    color: var(--text-primary);
     font-family: 'Noto Nastaliq Urdu', serif;
-    min-height: 100vh;
-    background-image:
-      radial-gradient(ellipse at 20% 20%, rgba(0,212,170,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 80%, rgba(245,158,11,0.06) 0%, transparent 50%);
+    line-height: 1.5;
+    padding-bottom: 2rem;
   }
 
-  header {
-    padding: 28px 24px 20px;
+  /* header */
+  .app-header {
+    text-align: center;
+    padding: 1.5rem 1.5rem 0.75rem;
+    background: linear-gradient(135deg, rgba(0,230,195,0.08), rgba(15,23,47,0.9));
     border-bottom: 1px solid var(--border);
-    background: rgba(17,24,39,0.8);
-    backdrop-filter: blur(12px);
-    position: sticky; top: 0; z-index: 100;
+    margin-bottom: 1rem;
   }
 
-  header h1 {
-    font-size: 1.5rem;
+  .app-header h1 {
+    font-size: 1.7rem;
     font-weight: 700;
-    color: var(--accent);
-    text-align: center;
-    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, var(--accent-primary), #2dd4bf);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.3px;
   }
 
-  header p {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 4px;
+  .app-header p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 6px;
   }
 
+  /* container */
   .container {
-    max-width: 640px;
+    max-width: 780px;
     margin: 0 auto;
-    padding: 24px 16px 80px;
+    padding: 0 1rem 6rem 1rem;
   }
 
-  /* ── Section card ── */
-  .section {
-    background: var(--card);
+  /* cards */
+  .card {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px 20px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(2px);
   }
 
-  .section::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 80px; height: 80px;
-    background: radial-gradient(circle, rgba(0,212,170,0.08), transparent 70%);
-    pointer-events: none;
+  .card:hover {
+    border-color: var(--border-light);
+    box-shadow: var(--shadow-md);
   }
 
-  .section-title {
+  .card-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 18px;
-    padding-bottom: 10px;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
   }
 
-  .section-title .icon {
-    width: 32px; height: 32px;
-    background: rgba(0,212,170,0.1);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(0,230,195,0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-primary);
   }
 
-  /* ── Field ── */
+  .card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+  }
+
+  /* form fields */
   .field {
-    margin-bottom: 16px;
+    margin-bottom: 1.2rem;
   }
 
   label {
     display: block;
-    font-size: 0.88rem;
-    color: #94a3b8;
-    margin-bottom: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
   }
 
-  input[type="number"], input[type="text"], select {
+  input, select {
     width: 100%;
-    background: #0d1626;
+    background: #0a0f1f;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 14px;
     padding: 12px 14px;
-    color: var(--text);
+    color: var(--text-primary);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 0.95rem;
+    transition: var(--transition);
     direction: ltr;
     text-align: right;
   }
@@ -135,268 +155,367 @@
 
   input:focus, select:focus {
     outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0,212,170,0.1);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(0,230,195,0.2);
+    background: #0e1428;
   }
 
-  select option { background: #111827; }
+  .row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
 
-  /* ── MCQ / Toggle ── */
+  /* MCQ toggle */
   .mcq-row {
     display: flex;
-    gap: 8px;
+    gap: 0.6rem;
     flex-wrap: wrap;
   }
 
   .mcq-btn {
     flex: 1;
-    min-width: 90px;
-    padding: 10px 12px;
-    background: #0d1626;
+    background: #0a0f1f;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--muted);
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 0.88rem;
-    cursor: pointer;
-    transition: all 0.18s;
+    border-radius: 40px;
+    padding: 10px 0;
     text-align: center;
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
   }
 
   .mcq-btn.active {
-    background: rgba(0,212,170,0.1);
-    border-color: var(--accent);
-    color: var(--accent);
+    background: rgba(0,230,195,0.12);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
     font-weight: 600;
   }
 
-  .mcq-btn:hover:not(.active) {
-    border-color: #334155;
-    color: var(--text);
+  /* product cards dynamic */
+  .product-card {
+    background: rgba(10, 15, 31, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.25s ease;
+    position: relative;
   }
 
-  /* Commission type toggle */
-  .commission-extra {
-    display: none;
-    margin-top: 12px;
-    padding: 12px;
-    background: rgba(245,158,11,0.06);
-    border: 1px solid rgba(245,158,11,0.2);
-    border-radius: 10px;
+  .product-card:hover {
+    border-color: var(--accent-primary);
+    background: #0d142a;
   }
 
-  .commission-extra.show { display: block; }
-
-  /* ── Product rows ── */
-  .product-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 8px;
-    align-items: end;
-  }
-
-  .product-row .field { margin-bottom: 0; }
-
-  .add-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 14px;
-    background: rgba(59,130,246,0.1);
-    border: 1px dashed rgba(59,130,246,0.4);
-    border-radius: 10px;
-    color: var(--blue);
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 0.85rem;
-    cursor: pointer;
-    width: 100%;
-    justify-content: center;
-    margin-top: 6px;
-    transition: all 0.18s;
-  }
-
-  .add-btn:hover { background: rgba(59,130,246,0.15); border-style: solid; }
-
-  .remove-btn {
-    background: rgba(239,68,68,0.08);
-    border: 1px solid rgba(239,68,68,0.2);
-    border-radius: 8px;
-    color: var(--danger);
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    align-self: end;
-    margin-bottom: 0;
-    height: 44px;
-    transition: all 0.15s;
-  }
-
-  .remove-btn:hover { background: rgba(239,68,68,0.15); }
-
-  /* ── Calculate button ── */
-  .calc-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--accent), #00b894);
-    border: none;
-    border-radius: 14px;
-    color: #0a0f1e;
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(0,212,170,0.25);
-    margin-bottom: 20px;
-  }
-
-  .calc-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(0,212,170,0.35);
-  }
-
-  .calc-btn:active { transform: translateY(0); }
-
-  /* ── Result card ── */
-  #result-section {
-    display: none;
-    background: linear-gradient(135deg, #0d1f0f, #0d1626);
-    border: 1px solid rgba(16,185,129,0.3);
-    border-radius: 16px;
-    padding: 22px 20px;
-    margin-bottom: 20px;
-  }
-
-  #result-section.show { display: block; animation: fadeUp 0.4s ease; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .result-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--green);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .result-grid {
-    display: grid;
-    gap: 10px;
-    margin-bottom: 18px;
-  }
-
-  .result-row {
+  .product-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 14px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--border-light);
+  }
+
+  .product-badge {
+    font-size: 0.8rem;
+    background: var(--accent-primary-dark);
+    background: rgba(0,230,195,0.15);
+    padding: 4px 12px;
+    border-radius: 40px;
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+
+  .remove-product-btn {
+    background: rgba(255,107,107,0.1);
+    border: none;
+    border-radius: 30px;
+    padding: 6px 14px;
+    color: var(--danger);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .remove-product-btn:hover {
+    background: rgba(255,107,107,0.2);
+    transform: scale(0.97);
+  }
+
+  .product-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-fields .field {
+    margin-bottom: 0;
+  }
+
+  .full-width {
+    grid-column: span 2;
+  }
+
+  /* add product button */
+  .add-btn {
+    width: 100%;
+    background: rgba(59,130,246,0.1);
+    border: 1px dashed var(--info);
+    border-radius: 60px;
+    padding: 12px;
+    color: var(--info);
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+  }
+
+  .add-btn:hover {
+    background: rgba(59,130,246,0.18);
+    border-style: solid;
+  }
+
+  /* sticky calculate */
+  .sticky-calc {
+    position: sticky;
+    bottom: 16px;
+    z-index: 20;
+    margin-top: 0.5rem;
+  }
+
+  .calc-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(105deg, var(--accent-primary), var(--accent-primary-dark));
+    border: none;
+    border-radius: 60px;
+    color: #0a0f1e;
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 24px rgba(0,230,195,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .calc-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0,230,195,0.4);
+  }
+
+  /* result section premium */
+  .result-premium {
+    background: linear-gradient(135deg, #0c1324, #0a1020);
+    border: 1px solid rgba(46,204,113,0.3);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .result-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--success);
+    margin-bottom: 1.2rem;
+  }
+
+  .summary-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
     border: 1px solid var(--border);
   }
 
-  .result-row.highlight {
-    background: rgba(16,185,129,0.08);
-    border-color: rgba(16,185,129,0.25);
+  .summary-item.highlight-profit {
+    background: rgba(46,204,113,0.08);
+    border-color: rgba(46,204,113,0.3);
   }
 
-  .result-row.warning {
-    background: rgba(245,158,11,0.08);
-    border-color: rgba(245,158,11,0.25);
+  .summary-item.highlight-expense {
+    background: rgba(245,166,35,0.06);
+    border-color: rgba(245,166,35,0.2);
   }
 
-  .result-label { color: #94a3b8; font-size: 0.88rem; }
+  .summary-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
 
-  .result-value {
+  .summary-value {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
     font-size: 1rem;
-    color: var(--text);
     direction: ltr;
   }
 
-  .result-value.green { color: var(--green); }
-  .result-value.amber { color: var(--accent2); }
-  .result-value.red   { color: var(--danger); }
+  .value-green { color: var(--success); }
+  .value-amber { color: var(--accent-secondary); }
+  .value-red { color: var(--danger); }
+  .value-white { color: var(--text-primary); }
 
-  /* ── Copy area ── */
-  .copy-area {
-    background: #0a0f1e;
+  /* copy area */
+  .copy-card {
+    background: #0a0f1c;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
+  }
+
+  .copy-area {
+    background: #03060e;
+    padding: 0.9rem;
+    border-radius: 0.9rem;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    color: #64748b;
+    font-size: 0.7rem;
+    color: var(--text-muted);
     white-space: pre;
     overflow-x: auto;
     direction: ltr;
     text-align: left;
-    margin-bottom: 12px;
-    line-height: 1.7;
+    line-height: 1.6;
+    border: 1px solid var(--border-light);
   }
 
   .copy-btn {
     width: 100%;
-    padding: 13px;
-    background: rgba(59,130,246,0.1);
-    border: 1px solid rgba(59,130,246,0.3);
-    border-radius: 10px;
-    color: var(--blue);
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.4);
+    border-radius: 60px;
+    padding: 0.8rem;
     font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--info);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     cursor: pointer;
-    transition: all 0.18s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: 0.2s;
+    margin-top: 0.8rem;
   }
 
-  .copy-btn:hover { background: rgba(59,130,246,0.18); border-color: var(--blue); }
-  .copy-btn.copied { background: rgba(16,185,129,0.1); border-color: var(--green); color: var(--green); }
-
-  /* hint */
-  .hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 8px;
-    padding: 8px 12px;
-    background: rgba(255,255,255,0.02);
-    border-radius: 8px;
-    border-right: 3px solid var(--accent2);
+  .copy-btn.copied {
+    background: rgba(46,204,113,0.15);
+    border-color: var(--success);
+    color: var(--success);
   }
 
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 18px 0;
+  .hint-text {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.2);
+    padding: 0.6rem;
+    border-radius: 0.8rem;
+    margin-top: 0.5rem;
+    border-right: 2px solid var(--accent-primary);
   }
 
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  /* responsive */
+  @media (max-width: 640px) {
+    .container {
+      padding: 0 0.8rem 5rem 0.8rem;
+    }
+    .card {
+      padding: 1.2rem;
+    }
+    .row-grid {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .product-fields {
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+    .full-width {
+      grid-column: span 1;
+    }
+    .summary-item {
+      padding: 0.7rem;
+    }
+    .sticky-calc {
+      bottom: 12px;
+    }
+  }
 
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 860px;
+    }
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.02);
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 10px;
+  }
+
+  .fade-slide {
+    animation: fadeSlideUp 0.3s ease;
+  }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>📦 آرڈر کیلکولیٹر</h1>
-  <p>ہر آرڈر کا حساب لگائیں — گوگل شیٹ میں پیسٹ کریں</p>
+<header class="app-header">
+  <h1>📦 سہیل بزنس · آرڈر کیلکولیٹر</h1>
+  <p>پیشہ ورانہ حساب | گوگل شیٹ کے لیے تیار</p>
 </header>
 
 <div class="container">
-
-  <!-- ① آرڈر بیسک معلومات -->
-  <div class="section">
-    <div class="section-title">
-      <div class="icon">①</div>
-      <span>آرڈر کی بنیادی معلومات</span>
+  <!-- 1. order basic -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">①</div>
+      <h3>آرڈر کی بنیادی معلومات</h3>
     </div>
-
-    <div class="row2">
+    <div class="row-grid">
       <div class="field">
         <label>آرڈر نمبر</label>
         <input type="text" id="orderNo" placeholder="ORD-001">
@@ -406,63 +525,54 @@
         <input type="text" id="orderDate" placeholder="2025-01-15">
       </div>
     </div>
-
     <div class="field">
       <label>ری سیلر (نام یا کوڈ)</label>
       <input type="text" id="resellerName" placeholder="مثلاً: احمد / RS-003">
     </div>
-
     <div class="field">
       <label>کسٹمر کا نام</label>
       <input type="text" id="customerName" placeholder="مثلاً: رحمان صاحب">
     </div>
   </div>
 
-  <!-- ② پروڈکٹس -->
-  <div class="section">
-    <div class="section-title">
-      <div class="icon">②</div>
-      <span>پروڈکٹس (ایک یا زیادہ)</span>
+  <!-- 2. products dynamic section -->
+  <div class="card" style="padding-bottom: 1rem;">
+    <div class="card-header">
+      <div class="card-icon">②</div>
+      <h3>پروڈکٹس (ایک یا زیادہ)</h3>
     </div>
-
-    <div id="products-list">
-      <!-- inserted by JS -->
-    </div>
-
-    <button class="add-btn" onclick="addProduct()">+ پروڈکٹ شامل کریں</button>
+    <div id="products-list"></div>
+    <button class="add-btn" onclick="addProduct()">+ نئی پروڈکٹ شامل کریں</button>
   </div>
 
-  <!-- ③ خرچے -->
-  <div class="section">
-    <div class="section-title">
-      <div class="icon">③</div>
-      <span>خرچے</span>
+  <!-- 3. expenses -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">③</div>
+      <h3>اضافی خرچے</h3>
     </div>
-
-    <div class="row2">
+    <div class="row-grid">
       <div class="field">
         <label>ڈیلیوری چارجز (PKR)</label>
-        <input type="number" id="delivery" placeholder="0" min="0">
+        <input type="number" id="delivery" placeholder="0" min="0" value="0">
       </div>
       <div class="field">
         <label>لیبل / پیکنگ خرچ (PKR)</label>
-        <input type="number" id="labelCost" placeholder="0" min="0">
+        <input type="number" id="labelCost" placeholder="0" min="0" value="0">
       </div>
     </div>
-
     <div class="field">
-      <label>سہیل (سپلائر) کے اضافی خرچے (PKR)</label>
-      <input type="number" id="supplierExtra" placeholder="0" min="0">
+      <label>سہیل (سپلائر) اضافی خرچے (PKR)</label>
+      <input type="number" id="supplierExtra" placeholder="0" min="0" value="0">
     </div>
   </div>
 
-  <!-- ④ کمیشن -->
-  <div class="section">
-    <div class="section-title">
-      <div class="icon">④</div>
-      <span>ری سیلر کمیشن</span>
+  <!-- 4. commission -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">④</div>
+      <h3>ری سیلر کمیشن</h3>
     </div>
-
     <div class="field">
       <label>کمیشن کی قسم</label>
       <div class="mcq-row" id="commType">
@@ -470,231 +580,220 @@
         <button class="mcq-btn" data-val="fixed" onclick="selectMCQ('commType',this)">فکسڈ رقم (PKR)</button>
       </div>
     </div>
-
     <div class="field">
       <label id="commLabel">کمیشن فیصد (٪)</label>
-      <input type="number" id="commValue" placeholder="10" min="0">
+      <input type="number" id="commValue" placeholder="10" min="0" value="0">
     </div>
   </div>
 
-  <!-- ⑤ سہیل کو ادائیگی -->
-  <div class="section">
-    <div class="section-title">
-      <div class="icon">⑤</div>
-      <span>سہیل سپلائر — ادائیگی</span>
+  <!-- 5. supplier note -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⑤</div>
+      <h3>سہیل سپلائر — ادائیگی</h3>
     </div>
-    <p class="hint">سہیل کی اصل قیمت پروڈکٹ میں داخل کریں — نیچے خود حساب ہوگا</p>
+    <p class="hint-text">سہیل کی اصل قیمت پروڈکٹ میں شامل کریں — ادائیگی خودکار حساب ہوگی</p>
   </div>
 
-  <!-- Calculate -->
-  <button class="calc-btn" onclick="calculate()">🔢 حساب لگائیں</button>
-
-  <!-- Result -->
-  <div id="result-section">
-    <div class="result-title">✅ حساب کتاب</div>
-    <div class="result-grid" id="result-grid"></div>
-
-    <div class="divider"></div>
-
-    <div class="result-title" style="color:var(--accent2);">📋 گوگل شیٹ کے لیے — کاپی کریں</div>
-    <div class="copy-area" id="copy-text"></div>
-    <button class="copy-btn" id="copy-btn" onclick="copyToClipboard()">
-      <span>📋</span> ایک کلک میں کاپی کریں
-    </button>
-    <p class="hint">گوگل شیٹ کھولیں → خالی قطار کا پہلا خانہ کلک کریں → Ctrl+V (یا موبائل پر Paste) → سب کالم میں آ جائے گا</p>
+  <!-- sticky calculate button -->
+  <div class="sticky-calc">
+    <button class="calc-btn" onclick="calculate()">🔢 حساب لگائیں &nbsp;→</button>
   </div>
 
+  <!-- result area -->
+  <div id="result-section" style="display: none;"></div>
 </div>
 
 <script>
-// ─────────────────────────────────────────
-// State
-// ─────────────────────────────────────────
-let productCount = 0;
+  // ========== KEEP ALL ORIGINAL LOGIC ==========
+  let productCount = 0;
 
-function fmt(n) {
-  return Number(n).toLocaleString('en-PK', {minimumFractionDigits:0, maximumFractionDigits:0});
-}
-
-function today() {
-  const d = new Date();
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-
-// ─────────────────────────────────────────
-// MCQ selection
-// ─────────────────────────────────────────
-function selectMCQ(groupId, btn) {
-  document.querySelectorAll(`#${groupId} .mcq-btn`).forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (groupId === 'commType') {
-    const isPercent = btn.dataset.val === 'percent';
-    document.getElementById('commLabel').textContent = isPercent ? 'کمیشن فیصد (٪)' : 'کمیشن رقم (PKR)';
-    document.getElementById('commValue').placeholder = isPercent ? '10' : '200';
-  }
-}
-
-function getMCQ(groupId) {
-  const active = document.querySelector(`#${groupId} .mcq-btn.active`);
-  return active ? active.dataset.val : null;
-}
-
-// ─────────────────────────────────────────
-// Products
-// ─────────────────────────────────────────
-function addProduct() {
-  productCount++;
-  const id = productCount;
-  const div = document.createElement('div');
-  div.id = `prod-${id}`;
-  div.innerHTML = `
-    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:6px;">پروڈکٹ ${id}</div>
-    <div class="product-row">
-      <div class="field">
-        <label>پروڈکٹ نام / کوڈ</label>
-        <input type="text" id="pName${id}" placeholder="P-01 / فیس واش">
-      </div>
-      <div class="field">
-        <label>تعداد</label>
-        <input type="number" id="pQty${id}" placeholder="1" min="1">
-      </div>
-      <button class="remove-btn" onclick="removeProduct(${id})" ${id===1?'style="visibility:hidden"':''}>✕</button>
-    </div>
-    <div class="product-row">
-      <div class="field">
-        <label>اصل قیمت / یونٹ (سہیل قیمت)</label>
-        <input type="number" id="pCost${id}" placeholder="150" min="0">
-      </div>
-      <div class="field">
-        <label>سیل قیمت / یونٹ (PKR)</label>
-        <input type="number" id="pSale${id}" placeholder="300" min="0">
-      </div>
-      <div></div>
-    </div>
-    <div style="height:1px;background:var(--border);margin:12px 0;"></div>
-  `;
-  document.getElementById('products-list').appendChild(div);
-}
-
-function removeProduct(id) {
-  const el = document.getElementById(`prod-${id}`);
-  if (el) el.remove();
-}
-
-// ─────────────────────────────────────────
-// Calculate
-// ─────────────────────────────────────────
-function calculate() {
-  // Collect products
-  const products = [];
-  let totalCost = 0, totalSale = 0;
-  const pList = document.getElementById('products-list').children;
-
-  for (let i = 1; i <= productCount; i++) {
-    const nameEl = document.getElementById(`pName${i}`);
-    if (!nameEl || !document.getElementById(`prod-${i}`)) continue;
-    const name = nameEl.value.trim() || `پروڈکٹ-${i}`;
-    const qty  = parseFloat(document.getElementById(`pQty${i}`).value) || 0;
-    const cost = parseFloat(document.getElementById(`pCost${i}`).value) || 0;
-    const sale = parseFloat(document.getElementById(`pSale${i}`).value) || 0;
-    products.push({name, qty, cost, sale});
-    totalCost += qty * cost;
-    totalSale += qty * sale;
+  function fmt(n) {
+    return Number(n).toLocaleString('en-PK', {minimumFractionDigits:0, maximumFractionDigits:0});
   }
 
-  if (products.length === 0 || totalSale === 0) {
-    alert('کم از کم ایک پروڈکٹ کی معلومات درج کریں');
-    return;
+  function today() {
+    const d = new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   }
 
-  const delivery     = parseFloat(document.getElementById('delivery').value) || 0;
-  const labelCost    = parseFloat(document.getElementById('labelCost').value) || 0;
-  const supplierExtra= parseFloat(document.getElementById('supplierExtra').value) || 0;
+  window.selectMCQ = function(groupId, btn) {
+    document.querySelectorAll(`#${groupId} .mcq-btn`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (groupId === 'commType') {
+      const isPercent = btn.dataset.val === 'percent';
+      document.getElementById('commLabel').textContent = isPercent ? 'کمیشن فیصد (٪)' : 'کمیشن رقم (PKR)';
+      document.getElementById('commValue').placeholder = isPercent ? '10' : '200';
+    }
+  }
 
-  const commType  = getMCQ('commType');
-  const commVal   = parseFloat(document.getElementById('commValue').value) || 0;
-  const commission = commType === 'percent' ? (totalSale * commVal / 100) : commVal;
+  function getMCQ(groupId) {
+    const active = document.querySelector(`#${groupId} .mcq-btn.active`);
+    return active ? active.dataset.val : null;
+  }
 
-  // Sohail payment = cost + supplier extra
-  const sohailPayment = totalCost + supplierExtra;
+  // enhanced product addition with modern card layout (preserving IDs)
+  window.addProduct = function() {
+    productCount++;
+    const id = productCount;
+    const prodDiv = document.createElement('div');
+    prodDiv.id = `prod-${id}`;
+    prodDiv.className = 'product-card fade-slide';
+    // build internal structure with required IDs: pName${id}, pQty${id}, pCost${id}, pSale${id}
+    prodDiv.innerHTML = `
+      <div class="product-header">
+        <span class="product-badge">پروڈکٹ ${id}</span>
+        <button class="remove-product-btn" onclick="removeProduct(${id})" ${id === 1 ? 'style="display:none"' : ''}>
+          <span>✕</span> حذف کریں
+        </button>
+      </div>
+      <div class="product-fields">
+        <div class="field full-width">
+          <label>پروڈکٹ نام / کوڈ</label>
+          <input type="text" id="pName${id}" placeholder="مثلاً: فیس واش / P-01">
+        </div>
+        <div class="field">
+          <label>تعداد</label>
+          <input type="number" id="pQty${id}" placeholder="1" min="1" value="1">
+        </div>
+        <div class="field">
+          <label>لاگت/یونٹ (سہیل قیمت)</label>
+          <input type="number" id="pCost${id}" placeholder="150" min="0" value="0">
+        </div>
+        <div class="field">
+          <label>سیل قیمت/یونٹ (PKR)</label>
+          <input type="number" id="pSale${id}" placeholder="300" min="0" value="0">
+        </div>
+      </div>
+    `;
+    document.getElementById('products-list').appendChild(prodDiv);
+  }
 
-  const totalExpenses = sohailPayment + delivery + labelCost + commission;
-  const netProfit     = totalSale - totalExpenses;
+  window.removeProduct = function(id) {
+    const el = document.getElementById(`prod-${id}`);
+    if (el) el.remove();
+  }
 
-  // Build result rows
-  const rows = [
-    { label: 'کل سیل آمدن',     value: fmt(totalSale),     cls: 'green', highlight: false },
-    { label: 'سہیل کو ادائیگی (اصل قیمت + اضافی)', value: fmt(sohailPayment), cls: 'amber', highlight: true, isWarning: true },
-    { label: 'ڈیلیوری چارجز',   value: fmt(delivery),      cls: '', highlight: false },
-    { label: 'لیبل / پیکنگ',    value: fmt(labelCost),     cls: '', highlight: false },
-    { label: 'ری سیلر کمیشن',   value: fmt(commission) + (commType==='percent' ? ` (${commVal}٪)` : ' PKR'), cls: 'amber', highlight: false },
-    { label: 'کل خرچے',         value: fmt(totalExpenses), cls: 'red', highlight: true },
-    { label: '🏆 خالص منافع',   value: fmt(netProfit),     cls: netProfit >= 0 ? 'green' : 'red', highlight: true },
-  ];
+  // calculate (identical logic, but updates result section with premium UI)
+  window.calculate = function() {
+    const products = [];
+    let totalCost = 0, totalSale = 0;
+    for (let i = 1; i <= productCount; i++) {
+      const nameEl = document.getElementById(`pName${i}`);
+      if (!nameEl || !document.getElementById(`prod-${i}`)) continue;
+      const name = nameEl.value.trim() || `پروڈکٹ-${i}`;
+      const qty = parseFloat(document.getElementById(`pQty${i}`).value) || 0;
+      const cost = parseFloat(document.getElementById(`pCost${i}`).value) || 0;
+      const sale = parseFloat(document.getElementById(`pSale${i}`).value) || 0;
+      products.push({name, qty, cost, sale});
+      totalCost += qty * cost;
+      totalSale += qty * sale;
+    }
 
-  const grid = document.getElementById('result-grid');
-  grid.innerHTML = '';
-  rows.forEach(r => {
-    const div = document.createElement('div');
-    div.className = 'result-row' + (r.highlight ? (r.isWarning ? ' warning' : ' highlight') : '');
-    div.innerHTML = `<span class="result-label">${r.label}</span><span class="result-value ${r.cls}">PKR ${r.value}</span>`;
-    grid.appendChild(div);
-  });
+    if (products.length === 0 || totalSale === 0) {
+      alert('براہ کرم کم از کم ایک پروڈکٹ مکمل درج کریں (سیل قیمت ضروری)');
+      return;
+    }
 
-  // Build copy text (TSV for Google Sheets)
-  const orderNo   = document.getElementById('orderNo').value   || 'ORD-???';
-  const orderDate = document.getElementById('orderDate').value || today();
-  const reseller  = document.getElementById('resellerName').value || '';
-  const customer  = document.getElementById('customerName').value || '';
-  const prodNames = products.map(p=>`${p.name}×${p.qty}`).join(' | ');
+    const delivery = parseFloat(document.getElementById('delivery').value) || 0;
+    const labelCost = parseFloat(document.getElementById('labelCost').value) || 0;
+    const supplierExtra = parseFloat(document.getElementById('supplierExtra').value) || 0;
+    const commType = getMCQ('commType');
+    const commVal = parseFloat(document.getElementById('commValue').value) || 0;
+    const commission = commType === 'percent' ? (totalSale * commVal / 100) : commVal;
+    const sohailPayment = totalCost + supplierExtra;
+    const totalExpenses = sohailPayment + delivery + labelCost + commission;
+    const netProfit = totalSale - totalExpenses;
 
-  const tsv = [
-    orderDate,
-    orderNo,
-    reseller,
-    customer,
-    prodNames,
-    totalSale,
-    totalCost,
-    delivery,
-    labelCost,
-    commission,
-    sohailPayment,
-    totalExpenses,
-    netProfit
-  ].join('\t');
+    // Build modern result card
+    const resultContainer = document.getElementById('result-section');
+    resultContainer.style.display = 'block';
+    resultContainer.innerHTML = `
+      <div class="result-premium fade-slide">
+        <div class="result-title">
+          <span>✅</span> حساب کتاب کا خلاصہ
+        </div>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="summary-label">📈 کل سیل آمدن</span>
+            <span class="summary-value value-green">PKR ${fmt(totalSale)}</span>
+          </div>
+          <div class="summary-item highlight-expense">
+            <span class="summary-label">🏭 سہیل کو ادائیگی (لاگت + اضافی)</span>
+            <span class="summary-value value-amber">PKR ${fmt(sohailPayment)}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">🚚 ڈیلیوری چارجز</span>
+            <span class="summary-value value-white">PKR ${fmt(delivery)}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">📦 لیبل / پیکنگ</span>
+            <span class="summary-value value-white">PKR ${fmt(labelCost)}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">🤝 ری سیلر کمیشن</span>
+            <span class="summary-value value-amber">PKR ${fmt(commission)}${commType === 'percent' ? ` (${commVal}%)` : ''}</span>
+          </div>
+          <div class="summary-item highlight-expense">
+            <span class="summary-label">⚠️ کل اخراجات</span>
+            <span class="summary-value value-red">PKR ${fmt(totalExpenses)}</span>
+          </div>
+          <div class="summary-item highlight-profit">
+            <span class="summary-label">🏆 خالص منافع (Profit)</span>
+            <span class="summary-value ${netProfit >= 0 ? 'value-green' : 'value-red'}" style="font-size:1.2rem;">PKR ${fmt(netProfit)}</span>
+          </div>
+        </div>
+        <div class="copy-card">
+          <div style="display:flex; align-items:center; gap:6px; margin-bottom:12px;">
+            <span>📋</span> <span style="font-weight:500;">گوگل شیٹ کاپی (TSV)</span>
+          </div>
+          <div class="copy-area" id="copy-text"></div>
+          <button class="copy-btn" id="copy-btn" onclick="copyToClipboard()">
+            <span>📋</span> ایک کلک میں کاپی کریں
+          </button>
+          <p class="hint-text">💡 گوگل شیٹ میں خالی سیل منتخب کریں → Ctrl+V (یا موبائل پر Paste) → تمام کالم خودکار بھر جائیں گے</p>
+        </div>
+      </div>
+    `;
 
-  document.getElementById('copy-text').textContent =
-`تاریخ\tآرڈر#\tری سیلر\tکسٹمر\tپروڈکٹس\tسیل\tلاگت\tڈیلیوری\tلیبل\tکمیشن\tسہیل ادائیگی\tکل خرچ\tمنافع
-${tsv}`;
+    // Build TSV data (exact same format)
+    const orderNo = document.getElementById('orderNo').value || 'ORD-???';
+    const orderDate = document.getElementById('orderDate').value || today();
+    const reseller = document.getElementById('resellerName').value || '';
+    const customer = document.getElementById('customerName').value || '';
+    const prodNames = products.map(p => `${p.name}×${p.qty}`).join(' | ');
+    const tsvLine = [
+      orderDate, orderNo, reseller, customer, prodNames,
+      totalSale, totalCost, delivery, labelCost, commission,
+      sohailPayment, totalExpenses, netProfit
+    ].join('\t');
 
-  const rs = document.getElementById('result-section');
-  rs.classList.add('show');
-  rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const fullTsv = `تاریخ\tآرڈر#\tری سیلر\tکسٹمر\tپروڈکٹس\tسیل\tلاگت\tڈیلیوری\tلیبل\tکمیشن\tسہیل ادائیگی\tکل خرچ\tمنافع\n${tsvLine}`;
+    const copyDiv = document.getElementById('copy-text');
+    if (copyDiv) copyDiv.textContent = fullTsv;
+    window._tsvData = tsvLine;
 
-  // Store for copy
-  window._tsvData = tsv;
-}
+    resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-function copyToClipboard() {
-  const text = window._tsvData;
-  if (!text) return;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copy-btn');
-    btn.classList.add('copied');
-    btn.innerHTML = '<span>✅</span> کاپی ہو گیا!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '<span>📋</span> ایک کلک میں کاپی کریں';
-    }, 2500);
-  });
-}
+  window.copyToClipboard = function() {
+    if (!window._tsvData) return;
+    navigator.clipboard.writeText(window._tsvData).then(() => {
+      const btn = document.getElementById('copy-btn');
+      if (!btn) return;
+      btn.classList.add('copied');
+      btn.innerHTML = '<span>✅</span> کاپی ہو گیا!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<span>📋</span> ایک کلک میں کاپی کریں';
+      }, 2200);
+    }).catch(() => alert("کاپی کرنے میں مسئلہ"));
+  }
 
-// ─────────────────────────────────────────
-// Init
-// ─────────────────────────────────────────
-document.getElementById('orderDate').value = today();
-addProduct();
+  // set default date & first product
+  document.getElementById('orderDate').value = today();
+  // initial product
+  addProduct();
 </script>
 </body>
 </html>
