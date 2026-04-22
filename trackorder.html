@@ -1,25 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0;url=https://script.google.com/macros/s/AKfycbx_RaCj3iGgI7py5V1nY3pnbIvjgizShBzMD2iwuHpS_aBmqzwOGGeqH3C0xiYAm3Ug/exec">
-  <script type="text/javascript">
-    window.location.href = "https://script.google.com/macros/s/AKfycbx_RaCj3iGgI7py5V1nY3pnbIvjgizShBzMD2iwuHpS_aBmqzwOGGeqH3C0xiYAm3Ug/exec";
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting to Tracking System...</title>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0a1628, #122040);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 50px;
-      direction: rtl;
     }
-    a {
-      color: #2563eb;
+
+    .card {
+      background: white;
+      color: #0a1628;
+      padding: 30px 25px;
+      border-radius: 20px;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #c9a227;
+    }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .loader {
+      margin: 20px auto;
+      border: 4px solid #eee;
+      border-top: 4px solid #c9a227;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .btn {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      background: #0a1628;
+      color: #c9a227;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: #c9a227;
+      color: #0a1628;
     }
   </style>
 </head>
+
 <body>
-  <p>براہ کرم انتظار کریں... آرڈر ٹریکنگ سسٹم میں ری ڈائریکٹ کیا جا رہا ہے۔</p>
-  <p>اگر خودکار ری ڈائریکٹ نہ ہو تو <a href="https://script.google.com/macros/s/AKfycbx_RaCj3iGgI7py5V1nY3pnbIvjgizShBzMD2iwuHpS_aBmqzwOGGeqH3C0xiYAm3Ug/exec">یہاں کلک کریں</a>۔</p>
+
+<div class="card">
+  <div class="logo">Your Brand</div>
+
+  <h2>Redirecting to Tracking System</h2>
+  <p>Please wait while we securely connect you...</p>
+
+  <div class="loader"></div>
+
+  <button class="btn" onclick="goNow()">Open Tracking Now</button>
+</div>
+
+<script>
+  const url = "https://script.google.com/macros/s/AKfycbx_RaCj3iGgI7py5V1nY3pnbIvjgizShBzMD2iwuHpS_aBmqzwOGGeqH3C0xiYAm3Ug/exec";
+
+  // Auto redirect after 3 seconds
+  setTimeout(() => {
+    window.location.href = url;
+  }, 3000);
+
+  // Show button if redirect fails (after 3 sec)
+  setTimeout(() => {
+    document.querySelector(".btn").style.display = "block";
+  }, 3000);
+
+  function goNow() {
+    window.location.href = url;
+  }
+</script>
+
 </body>
 </html>
