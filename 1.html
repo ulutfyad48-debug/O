@@ -1,440 +1,527 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>پاکستان ڈیجیٹل نیٹ ورک - کمیشن پارٹنر رجسٹریشن</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  :root {
-    --navy: #0a1628;
-    --navy-mid: #122040;
-    --gold: #c9a227;
-    --white: #ffffff;
-    --error: #e74c3c;
-    --light-gold-bg: #fef8e7;
-    --gray-bg: #f9f9fc;
-    --soft-green: #e6f7ec;
-  }
-
-  body {
-    background: linear-gradient(145deg, #0b1a2e 0%, #071220 100%);
-    font-family: 'Tajawal', sans-serif;
-    padding: 20px 16px;
-    min-height: 100vh;
-  }
-
-  .form-card {
-    max-width: 760px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: 32px;
-    overflow: hidden;
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(201, 162, 39, 0.4);
-  }
-
-  .hero {
-    background: linear-gradient(115deg, var(--navy), #0a1c2f);
-    padding: 28px 20px;
-    text-align: center;
-    border-bottom: 3px solid var(--gold);
-  }
-
-  .hero h1 {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 28px;
-    color: var(--gold);
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-
-  .hero p {
-    color: rgba(255,255,240,0.85);
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .form-body {
-    padding: 28px 24px;
-    background: var(--white);
-  }
-
-  .section-title {
-    background: var(--light-gold-bg);
-    padding: 12px 18px;
-    border-right: 5px solid var(--gold);
-    margin: 28px 0 18px 0;
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--navy);
-    border-radius: 12px 0 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .new-section-title {
-    background: #eef2ff;
-    border-right-color: #2c3e66;
-  }
-
-  .info-banner {
-    background: #e9f0fa;
-    border-radius: 18px;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    border-right: 4px solid var(--gold);
-    font-size: 0.9rem;
-    color: #0a2b3e;
-  }
-
-  .input-group {
-    margin-bottom: 20px;
-  }
-
-  .input-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: #1e2a44;
-  }
-
-  .required-star::after {
-    content: " *";
-    color: var(--error);
-    font-weight: bold;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 14px;
-    font-family: 'Tajawal', sans-serif;
-    font-size: 15px;
-    transition: 0.25s;
-    background: #fefefe;
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--gold);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(201,162,39,0.2);
-    background: white;
-  }
-
-  input.invalid, textarea.invalid, select.invalid {
-    border-color: var(--error);
-    background: #fff8f8;
-  }
-
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-
-  @media (max-width: 560px) {
-    .grid-2 {
-      grid-template-columns: 1fr;
-      gap: 12px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pakistan Digital Network | Partner Registration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    :root {
+      --navy-deep: #0B1E33;
+      --navy-primary: #0F2B42;
+      --gold-accent: #D4AF37;
+      --gold-soft: #F5E7C8;
+      --white-pure: #FFFFFF;
+      --gray-light: #F8FAFE;
+      --gray-border: #E9EDF2;
+      --error-red: #D9534F;
+      --text-dark: #1E2F3E;
+      --text-muted: #5B6F82;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+      --transition-default: all 0.2s ease;
+    }
+
+    body {
+      background: linear-gradient(135deg, #EFF3F8 0%, #E6EDF4 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      padding: 1.5rem 1rem;
+      min-height: 100vh;
+    }
+
+    /* premium container */
+    .registration-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--white-pure);
+      border-radius: 2rem;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: var(--transition-default);
+    }
+
+    /* header with brand */
+    .brand-header {
+      background: linear-gradient(105deg, var(--navy-deep) 0%, var(--navy-primary) 100%);
+      padding: 2rem 1.8rem;
+      text-align: center;
+      border-bottom: 4px solid var(--gold-accent);
+    }
+
+    .brand-header h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--white-pure);
+      margin-bottom: 0.4rem;
+    }
+
+    .brand-header .gold-text {
+      color: var(--gold-accent);
+      font-weight: 600;
+    }
+
+    .brand-header .tagline {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* form body */
     .form-body {
-      padding: 20px 16px;
+      padding: 2rem 2rem 2rem 2rem;
     }
-  }
 
-  .radio-group {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
+    /* section styling */
+    .form-section {
+      margin-bottom: 2.2rem;
+      background: var(--gray-light);
+      border-radius: 1.5rem;
+      padding: 0.2rem 1.2rem 1.4rem 1.2rem;
+      transition: var(--transition-default);
+    }
 
-  .radio-option {
-    flex: 1;
-    background: #f1f5f9;
-    text-align: center;
-    padding: 10px 12px;
-    border-radius: 40px;
-    border: 1.5px solid transparent;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.2s;
-    min-width: 110px;
-  }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--navy-primary);
+      padding: 0.8rem 0 0.6rem 0;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold-accent);
+      display: inline-block;
+      border-bottom-width: 2px;
+    }
 
-  .radio-option.active {
-    background: var(--navy);
-    color: var(--gold);
-    border-color: var(--gold);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  }
+    .section-heading-wrapper {
+      margin-bottom: 1rem;
+    }
 
-  .bank-details {
-    background: #f8fafc;
-    padding: 18px;
-    border-radius: 20px;
-    margin-top: 15px;
-    border: 1px solid #e2edf7;
-    transition: all 0.3s;
-  }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
 
-  .bank-details.hidden {
-    display: none;
-  }
+    .input-field {
+      margin-bottom: 0.2rem;
+    }
 
-  .consent-box {
-    background: var(--light-gold-bg);
-    border-radius: 18px;
-    padding: 16px;
-    margin: 25px 0 18px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    font-size: 14px;
-  }
+    .input-field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+    }
 
-  .consent-box input {
-    width: 22px;
-    height: 22px;
-    margin-top: 2px;
-    accent-color: var(--gold);
-  }
+    .required-star::after {
+      content: " *";
+      color: var(--error-red);
+      font-weight: 700;
+    }
 
-  .submit-btn {
-    width: 100%;
-    background: var(--navy);
-    color: var(--gold);
-    border: none;
-    padding: 16px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 50px;
-    font-family: 'Noto Nastaliq Urdu', serif;
-    cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-    margin-top: 12px;
-  }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background-color: var(--white-pure);
+      transition: var(--transition-default);
+      color: var(--text-dark);
+    }
 
-  .submit-btn:hover {
-    background: var(--gold);
-    color: var(--navy);
-    transform: scale(0.98);
-  }
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
 
-  .note {
-    font-size: 12px;
-    color: #5a687c;
-    text-align: center;
-    margin-top: 15px;
-  }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold-accent);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      background: var(--white-pure);
+    }
 
-  .inline-note {
-    font-size: 11px;
-    color: #6c7a91;
-    margin-top: 4px;
-  }
-</style>
+    input.invalid, textarea.invalid, select.invalid {
+      border-color: var(--error-red);
+      background-color: #FFF8F8;
+    }
+
+    .helper-text {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    /* custom radio group (cash preference) */
+    .radio-group-custom {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    .radio-option {
+      flex: 1;
+      background: var(--white-pure);
+      border: 1.5px solid var(--gray-border);
+      border-radius: 3rem;
+      padding: 0.7rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-dark);
+      backdrop-filter: blur(2px);
+    }
+
+    .radio-option:hover {
+      border-color: var(--gold-accent);
+      background: var(--gold-soft);
+      transform: translateY(-1px);
+    }
+
+    .radio-option.active {
+      background: var(--navy-primary);
+      color: var(--gold-accent);
+      border-color: var(--gold-accent);
+      box-shadow: 0 6px 12px -8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* bank details card */
+    .bank-details-card {
+      background: var(--white-pure);
+      border-radius: 1.25rem;
+      padding: 1.2rem;
+      margin-top: 1rem;
+      border: 1px solid var(--gray-border);
+      transition: all 0.25s ease;
+    }
+
+    .bank-details-card.hidden {
+      display: none;
+    }
+
+    /* info banner */
+    .info-banner {
+      background: var(--gold-soft);
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0 1.5rem;
+      border-left: 4px solid var(--gold-accent);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy-deep);
+    }
+
+    /* consent styling */
+    .consent-wrapper {
+      background: var(--gray-light);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1.5rem 0 1.2rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .consent-wrapper input {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.1rem;
+      accent-color: var(--gold-accent);
+    }
+
+    .consent-wrapper label {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* CTA button */
+    .submit-button {
+      width: 100%;
+      background: var(--navy-primary);
+      color: var(--gold-accent);
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 3rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 43, 66, 0.25);
+      margin-top: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .submit-button:hover {
+      background: var(--gold-accent);
+      color: var(--navy-deep);
+      transform: scale(0.98);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .footnote {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+    }
+
+    @media (max-width: 680px) {
+      .form-body {
+        padding: 1.5rem;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .brand-header h1 {
+        font-size: 1.5rem;
+      }
+      .radio-option {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0.8rem;
+      }
+      .form-section {
+        padding: 0.2rem 1rem 1rem 1rem;
+      }
+    }
+
+    /* micro-animation */
+    input, .radio-option, .submit-button {
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+  </style>
 </head>
 <body>
 
-<div class="form-card">
-  <div class="hero">
-    <h1>پاکستان ڈیجیٹل نیٹ ورک</h1>
-    <p>✅ کمیشن بیسڈ ری سیلر پروگرام (صرف ہماری مصنوعات)</p>
+<div class="registration-card">
+  <div class="brand-header">
+    <h1>PAKISTAN <span class="gold-text">DIGITAL NETWORK</span></h1>
+    <div class="tagline">📈 Commission Partner Program — Sell Our Products, Earn Commission</div>
   </div>
 
-  <form id="partnerForm" class="form-body">
-    <!-- SECTION 1: ذاتی معلومات -->
-    <div class="section-title">👤 ذاتی معلومات</div>
-    <div class="grid-2">
-      <div class="input-group">
-        <label class="required-star">پورا نام (صاحبِ کاروبار)</label>
-        <input type="text" id="fullName" placeholder="مثلاً: عائشہ محمود" autocomplete="off">
+  <form id="partnerRegistrationForm" class="form-body">
+    <!-- PERSONAL INFO SECTION -->
+    <div class="form-section">
+      <div class="section-heading-wrapper">
+        <div class="section-heading">👤 Personal Information</div>
       </div>
-      <div class="input-group">
-        <label class="required-star">والد / شوہر کا نام</label>
-        <input type="text" id="fatherName" placeholder="والد کا نام">
-      </div>
-    </div>
-
-    <div class="grid-2">
-      <div class="input-group">
-        <label class="required-star">شہر / تحصیل</label>
-        <input type="text" id="cityTehsil" placeholder="مثلاً: لاہور، گلبرگ">
-      </div>
-      <div class="input-group">
-        <label class="required-star">مکمل رہائشی / دفتری پتہ</label>
-        <textarea id="fullAddress" rows="2" placeholder="گھر نمبر، سٹریٹ، سیکٹر، شہر"></textarea>
-      </div>
-    </div>
-
-    <!-- SECTION 2: رابطہ نمبر -->
-    <div class="section-title">📞 رابطہ کی تفصیلات</div>
-    <div class="grid-2">
-      <div class="input-group">
-        <label class="required-star">واٹس ایپ نمبر (موبائل)</label>
-        <input type="tel" id="whatsappNumber" placeholder="03xxxxxxxxx" maxlength="11" inputmode="numeric">
-        <div class="inline-note">صرف پاکستان نمبر 03XX کے ساتھ</div>
-      </div>
-      <div class="input-group">
-        <label class="required-star">کال کے لیے دوسرا نمبر (موبائل / لینڈ لائن)</label>
-        <input type="tel" id="callNumber" placeholder="03xxxxxxxxx یا 021-xxxxxxx" inputmode="numeric">
-      </div>
-    </div>
-
-    <!-- SECTION 3: کاروبار اور پک اپ ایڈریس -->
-    <div class="section-title">🏪 شاپ & پک اپ کی معلومات</div>
-    <div class="input-group">
-      <label class="required-star">دکان / کاروبار کا نام (جو لوگوں کو نظر آئے گا)</label>
-      <input type="text" id="shopName" placeholder="مثلاً: احمد الیکٹرانکس، ثنا بیوٹی سیلون">
-    </div>
-    <div class="input-group">
-      <label class="required-star">پک اپ کا مکمل پتہ (جہاں سے رائیڈر پارسل اٹھائے گا)</label>
-      <textarea id="pickupAddress" rows="2" placeholder="مقام، قریب ترین لینڈ مارک، شہر، پوسٹ کوڈ"></textarea>
-    </div>
-
-    <!-- INFO: کاروباری ماڈل (فکسڈ - صرف ہماری مصنوعات کمیشن پر) -->
-    <div class="info-banner">
-      📢 <strong>کاروباری ماڈل (طے شدہ):</strong> آپ صرف <strong>پاکستان ڈیجیٹل نیٹ ورک</strong> کی مصنوعات فروخت کریں گے۔ ہر فروخت پر مقررہ کمیشن دیا جائے گا۔ آپ کو اپنی ذاتی مصنوعات بھیجنے کی ضرورت نہیں۔
-    </div>
-
-    <!-- SECTION 4: ادائیگی کی ترجیح (کیش یا بینک) -->
-    <div class="section-title">💰 ادائیگی کا طریقہ کار</div>
-    <div class="input-group">
-      <label>کیا آپ کو ہم کیش دیں گے؟ (مالیت کی ترسیل)</label>
-      <div class="radio-group" id="cashGroup">
-        <div class="radio-option" data-cash="yes">✅ ہاں، کیش وصول کروں گا</div>
-        <div class="radio-option" data-cash="no">🏦 نہیں، بینک اکاؤنٹ میں بھیجیں</div>
-      </div>
-    </div>
-
-    <!-- بینک کی تفصیلات (conditionally show) -->
-    <div id="bankDetailsContainer" class="bank-details hidden">
-      <div class="section-title" style="margin-top:0; background:#eef2ff">🏛️ بینک اکاؤنٹ کی معلومات</div>
       <div class="grid-2">
-        <div class="input-group">
-          <label class="required-star">بینک کا نام</label>
-          <input type="text" id="bankName" placeholder="مثلاً: ایچ بی ایل، مِیزان، ایبí">
+        <div class="input-field">
+          <label class="required-star">Full Name (Business Owner)</label>
+          <input type="text" id="fullName" placeholder="e.g., Ayesha Mahmood" autocomplete="name">
         </div>
-        <div class="input-group">
-          <label class="required-star">اکاؤنٹ ٹائٹل</label>
-          <input type="text" id="accountTitle" placeholder="جیسا کہ بینک میں درج ہے">
+        <div class="input-field">
+          <label class="required-star">Father's / Husband's Name</label>
+          <input type="text" id="fatherName" placeholder="Legal guardian name">
         </div>
       </div>
-      <div class="input-group">
-        <label class="required-star">اکاؤنٹ نمبر / IBAN</label>
-        <input type="text" id="accountNumber" placeholder="PK36xxxx یا 123456789">
+      <div class="grid-2">
+        <div class="input-field">
+          <label class="required-star">City / Tehsil</label>
+          <input type="text" id="cityTehsil" placeholder="e.g., Lahore, Gulberg">
+        </div>
+        <div class="input-field">
+          <label class="required-star">Complete Residential / Office Address</label>
+          <textarea id="fullAddress" rows="2" placeholder="House #, Street, Sector, City"></textarea>
+        </div>
       </div>
     </div>
 
-    <!-- 🆕 نیا سیکشن: ای میل (لازمی) + موسمی مشورہ -->
-    <div class="section-title new-section-title">🆕 نئی تفصیلات (لازمی ای میل اور مارکیٹ رائے)</div>
-    
-    <!-- Email field (mandatory) -->
-    <div class="input-group">
-      <label class="required-star">ای میل ایڈریس (مکمل اور فعال)</label>
-      <input type="email" id="partnerEmail" placeholder="مثال: ayesha@example.com" autocomplete="off">
-      <div class="inline-note">تمام اہم اطلاعات اور رجسٹریشن کنفرمیشن اس ای میل پر بھیجی جائیں گی۔</div>
+    <!-- CONTACT SECTION -->
+    <div class="form-section">
+      <div class="section-heading-wrapper">
+        <div class="section-heading">📞 Contact Details</div>
+      </div>
+      <div class="grid-2">
+        <div class="input-field">
+          <label class="required-star">WhatsApp Number (Mobile)</label>
+          <input type="tel" id="whatsappNumber" placeholder="03XXXXXXXXX" maxlength="11" inputmode="numeric">
+          <span class="helper-text">Pakistan format: 03xx xxxxxxx (11 digits)</span>
+        </div>
+        <div class="input-field">
+          <label class="required-star">Secondary Contact (Call)</label>
+          <input type="tel" id="callNumber" placeholder="03XXXXXXXXX or 021-XXXXXXX" inputmode="numeric">
+          <span class="helper-text">Mobile or landline</span>
+        </div>
+      </div>
+      <div class="input-field">
+        <label class="required-star">Email Address (All official communication)</label>
+        <input type="email" id="partnerEmail" placeholder="business@example.com" autocomplete="email">
+        <span class="helper-text">Confirmation & updates will be sent here</span>
+      </div>
     </div>
 
-    <!-- موسم / مصنوعات کی رائے (اختیاری لیکن مفید) -->
-    <div class="input-group">
-      <label>موسم / علاقہ / مصنوعات کے حوالے سے آپ کی رائے (اختیاری)</label>
-      <textarea id="seasonalAdvice" rows="3" placeholder="مثال: میرے علاقے میں گرمیوں میں ٹھنڈے مشروبات، موئسچرائزرز اور کپڑے بہترین فروخت ہوتے ہیں۔ آپ ہمیں بتائیں کہ کونسی پروڈکٹ اس موسم میں بھیجی جائے تاکہ زیادہ کمیشن حاصل ہو۔"></textarea>
-      <div class="inline-note">ہمیں مشورہ دیں کہ آپ کے شہر / موسم میں کون سی مصنوعات تیزی سے بکیں گی۔ اس سے ہم بہتر تعاون کر سکیں گے۔</div>
+    <!-- BUSINESS & PICKUP -->
+    <div class="form-section">
+      <div class="section-heading-wrapper">
+        <div class="section-heading">🏪 Shop & Pickup Info</div>
+      </div>
+      <div class="input-field">
+        <label class="required-star">Shop / Business Name (public display)</label>
+        <input type="text" id="shopName" placeholder="e.g., Ahmed Electronics, Sana Salon">
+      </div>
+      <div class="input-field">
+        <label class="required-star">Pickup Full Address (Rider collects parcels)</label>
+        <textarea id="pickupAddress" rows="2" placeholder="Address, landmark, city, postal code"></textarea>
+        <span class="helper-text">Where our courier will pick up shipments</span>
+      </div>
     </div>
 
-    <!-- شرائط و رضامندی -->
-    <div class="consent-box">
+    <!-- BUSINESS MODEL INFO BANNER -->
+    <div class="info-banner">
+      📢 <strong>Commission Business Model (Fixed):</strong> You will exclusively sell <strong>Pakistan Digital Network</strong> products. Earn a fixed commission on every sale. You do NOT ship your own products.
+    </div>
+
+    <!-- PAYMENT PREFERENCE SECTION -->
+    <div class="form-section">
+      <div class="section-heading-wrapper">
+        <div class="section-heading">💰 Payment Preference</div>
+      </div>
+      <div class="input-field">
+        <label>Would you like to receive cash on delivery or bank transfer?</label>
+        <div class="radio-group-custom" id="cashGroup">
+          <div class="radio-option" data-cash="yes">✅ Yes, receive Cash</div>
+          <div class="radio-option" data-cash="no">🏦 Bank transfer (to account)</div>
+        </div>
+      </div>
+
+      <!-- Bank Details conditional -->
+      <div id="bankDetailsContainer" class="bank-details-card hidden">
+        <div style="font-weight: 700; margin-bottom: 0.8rem; color: #0B2A3E;">🏛️ Bank Account Information</div>
+        <div class="grid-2">
+          <div class="input-field">
+            <label class="required-star">Bank Name</label>
+            <input type="text" id="bankName" placeholder="e.g., HBL, Meezan, Alfalah">
+          </div>
+          <div class="input-field">
+            <label class="required-star">Account Title</label>
+            <input type="text" id="accountTitle" placeholder="As per bank records">
+          </div>
+        </div>
+        <div class="input-field">
+          <label class="required-star">Account Number / IBAN</label>
+          <input type="text" id="accountNumber" placeholder="PK36xxxx or 123456789">
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKET INSIGHT (OPTIONAL) -->
+    <div class="form-section">
+      <div class="section-heading-wrapper">
+        <div class="section-heading">📊 Seasonal & Market Advice (Optional)</div>
+      </div>
+      <div class="input-field">
+        <label>Your suggestions for products & seasonal trends</label>
+        <textarea id="seasonalAdvice" rows="3" placeholder="Example: In summer, cold drinks, moisturizers, and lightweight fabrics sell best in my city. Guide us on which products to send for higher commission."></textarea>
+        <span class="helper-text">Help us serve you better — optional but valued</span>
+      </div>
+    </div>
+
+    <!-- CONSENT & AGREEMENT -->
+    <div class="consent-wrapper">
       <input type="checkbox" id="consentCheck">
-      <label for="consentCheck">میں تصدیق کرتا/کرتی ہوں کہ فراہم کردہ تمام معلومات درست اور مکمل ہیں۔ میں صرف پاکستان ڈیجیٹل نیٹ ورک کی مصنوعات کمیشن پر بیچوں گا/گی اور شراکت کے قوانین کی پابندی کروں گا/گی۔</label>
+      <label for="consentCheck">I confirm that all information provided is accurate and complete. I agree to exclusively sell <strong>Pakistan Digital Network</strong> products on a commission basis and will abide by the partnership terms.</label>
     </div>
 
-    <button type="button" class="submit-btn" onclick="submitRegistration()">📩 رجسٹریشن جمع کریں (واٹس ایپ پر بھیجیں)</button>
-    <div class="note">آپ کی درخواست براہِ راست ہمارے واٹس ایپ پر بھیجی جائے گی۔ ہم 24 گھنٹے میں ای میل اور واٹس ایپ پر رابطہ کریں گے۔</div>
+    <button type="button" class="submit-button" id="submitBtn">✉️ Submit Registration via WhatsApp</button>
+    <div class="footnote">✅ Your application will be sent directly to our official WhatsApp. We’ll contact you within 24 hours via email & WhatsApp.</div>
   </form>
 </div>
 
 <script>
-  // -------------------- RADIO GROUP HANDLERS (صرف کیش / بینک) --------------------
-  let selectedCashMode = "";
-
-  // Cash preference radios
+  // ---------- DOM Elements ----------
   const cashOptions = document.querySelectorAll('#cashGroup .radio-option');
   const bankContainer = document.getElementById('bankDetailsContainer');
-  
+  let selectedCashMode = "";   // "yes" or "no"
+
+  // Helper functions for bank required fields
+  function setBankRequired(isRequired) {
+    const bankFields = ['bankName', 'accountTitle', 'accountNumber'];
+    bankFields.forEach(id => {
+      const field = document.getElementById(id);
+      if (field) {
+        if (isRequired) {
+          field.required = true;
+        } else {
+          field.required = false;
+          field.classList.remove('invalid');
+        }
+      }
+    });
+  }
+
+  function clearBankValidation() {
+    ['bankName', 'accountTitle', 'accountNumber'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('invalid');
+    });
+  }
+
+  // Update bank details visibility & required
+  function updateBankUI() {
+    if (selectedCashMode === 'no') {
+      bankContainer.classList.remove('hidden');
+      setBankRequired(true);
+    } else {
+      bankContainer.classList.add('hidden');
+      setBankRequired(false);
+      clearBankValidation();
+    }
+  }
+
+  // Radio group handlers (custom)
   cashOptions.forEach(opt => {
     opt.addEventListener('click', function() {
       cashOptions.forEach(o => o.classList.remove('active'));
       this.classList.add('active');
       selectedCashMode = this.getAttribute('data-cash');
-      
-      if (selectedCashMode === 'no') {
-        bankContainer.classList.remove('hidden');
-      } else {
-        bankContainer.classList.add('hidden');
-        clearBankRequired();
-      }
+      updateBankUI();
     });
   });
 
-  function clearBankRequired() {
-    const bankFields = ['bankName', 'accountTitle', 'accountNumber'];
-    bankFields.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.required = false;
-    });
-  }
-
-  function setBankRequired(required) {
-    const bankFields = ['bankName', 'accountTitle', 'accountNumber'];
-    bankFields.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.required = required;
-    });
-  }
-
-  function updateBankRequiredBasedOnSelection() {
-    if (selectedCashMode === 'no') {
-      setBankRequired(true);
-    } else {
-      setBankRequired(false);
-    }
-  }
-
-  // ---------- VALIDATION (تمام فیلڈز + ای میل لازمی) ----------
+  // ---------- Validation (all required + email + phone) ----------
   function validateForm() {
     let isValid = true;
-    
-    // required standard fields
+
+    // Core required fields mapping
     const requiredFields = [
-      { id: 'fullName', name: 'پورا نام' },
-      { id: 'fatherName', name: 'والد کا نام' },
-      { id: 'cityTehsil', name: 'شہر / تحصیل' },
-      { id: 'fullAddress', name: 'مکمل پتہ' },
-      { id: 'whatsappNumber', name: 'واٹس ایپ نمبر' },
-      { id: 'callNumber', name: 'کال نمبر' },
-      { id: 'shopName', name: 'دکان کا نام' },
-      { id: 'pickupAddress', name: 'پک اپ پتہ' }
+      { id: 'fullName', name: 'Full Name' },
+      { id: 'fatherName', name: "Father's Name" },
+      { id: 'cityTehsil', name: 'City / Tehsil' },
+      { id: 'fullAddress', name: 'Complete Address' },
+      { id: 'whatsappNumber', name: 'WhatsApp Number' },
+      { id: 'callNumber', name: 'Secondary Contact Number' },
+      { id: 'shopName', name: 'Shop/Business Name' },
+      { id: 'pickupAddress', name: 'Pickup Address' },
+      { id: 'partnerEmail', name: 'Email Address' }
     ];
-    
+
     requiredFields.forEach(field => {
       const el = document.getElementById(field.id);
       if (!el.value.trim()) {
@@ -444,105 +531,98 @@
         el.classList.remove('invalid');
       }
     });
-    
-    // Cash mode selection check
+
+    // Email format validation
+    const emailField = document.getElementById('partnerEmail');
+    const emailValue = emailField.value.trim();
+    const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+    if (emailValue && !emailRegex.test(emailValue)) {
+      emailField.classList.add('invalid');
+      alert("❌ Please enter a valid email address (e.g., name@example.com).");
+      isValid = false;
+    } else if (!emailValue) {
+      emailField.classList.add('invalid');
+      alert("❌ Email address is required for registration updates.");
+      isValid = false;
+    } else {
+      emailField.classList.remove('invalid');
+    }
+
+    // WhatsApp validation: must be 11 digits starting with 03
+    const whatsapp = document.getElementById('whatsappNumber').value.trim();
+    const whatsappRegex = /^03\d{9}$/;
+    if (!whatsappRegex.test(whatsapp)) {
+      document.getElementById('whatsappNumber').classList.add('invalid');
+      alert("⚠️ WhatsApp number must be a valid Pakistan mobile number: 03XXXXXXXXX (11 digits).");
+      isValid = false;
+    } else {
+      document.getElementById('whatsappNumber').classList.remove('invalid');
+    }
+
+    // Call number validation: either 11-digit mobile (03xx) or landline pattern like 021-xxxxxxx (basic check)
+    const callNum = document.getElementById('callNumber').value.trim();
+    const mobilePattern = /^03\d{9}$/;
+    const landlinePattern = /^0[0-9]{2,3}-[0-9]{6,8}$/;
+    if (!mobilePattern.test(callNum) && !landlinePattern.test(callNum)) {
+      document.getElementById('callNumber').classList.add('invalid');
+      alert("⚠️ Secondary contact number must be a valid mobile (03XXXXXXXXX) or landline (e.g., 021-1234567).");
+      isValid = false;
+    } else {
+      document.getElementById('callNumber').classList.remove('invalid');
+    }
+
+    // Payment preference selected?
     if (!selectedCashMode) {
-      alert("⚠️ براہ کرم منتخب کریں کہ آپ کو کیش دیا جائے گا یا بینک اکاؤنٹ میں رقم بھیجی جائے گی؟");
-      cashOptions[0].parentElement.style.border = "1px solid red";
+      alert("⚠️ Please select your payment preference: Cash or Bank Transfer.");
+      cashOptions.forEach(opt => opt.parentElement.style.border = "1px solid red");
       isValid = false;
     } else {
       cashOptions.forEach(opt => opt.parentElement.style.border = "");
     }
-    
-    // if cash mode = 'no' then validate bank details
+
+    // If bank transfer selected, validate bank fields
     if (selectedCashMode === 'no') {
-      const bankName = document.getElementById('bankName').value.trim();
-      const accountTitle = document.getElementById('accountTitle').value.trim();
-      const accountNumber = document.getElementById('accountNumber').value.trim();
-      if (!bankName) {
+      const bankNameVal = document.getElementById('bankName').value.trim();
+      const accountTitleVal = document.getElementById('accountTitle').value.trim();
+      const accountNumberVal = document.getElementById('accountNumber').value.trim();
+      if (!bankNameVal) {
         document.getElementById('bankName').classList.add('invalid');
         isValid = false;
       } else {
         document.getElementById('bankName').classList.remove('invalid');
       }
-      if (!accountTitle) {
+      if (!accountTitleVal) {
         document.getElementById('accountTitle').classList.add('invalid');
         isValid = false;
       } else {
         document.getElementById('accountTitle').classList.remove('invalid');
       }
-      if (!accountNumber) {
+      if (!accountNumberVal) {
         document.getElementById('accountNumber').classList.add('invalid');
         isValid = false;
       } else {
         document.getElementById('accountNumber').classList.remove('invalid');
       }
     }
-    
-    // WhatsApp and call number validation
-    const whatsapp = document.getElementById('whatsappNumber').value.trim();
-    const callNum = document.getElementById('callNumber').value.trim();
-    const whatsappRegex = /^03\d{9}$/;
-    if (whatsapp && !whatsappRegex.test(whatsapp)) {
-      alert("⚠️ واٹس ایپ نمبر پاکستان کی صحیح فارمیٹ میں درج کریں: 03XXXXXXXXX (11 ہندسے)");
-      document.getElementById('whatsappNumber').classList.add('invalid');
-      isValid = false;
-    } else if (whatsapp) {
-      document.getElementById('whatsappNumber').classList.remove('invalid');
-    }
-    
-    if (callNum && !/^(\d{11}|\d{4}-\d{7})$/.test(callNum.replace(/\s/g,''))) {
-      if (!/^03\d{9}$/.test(callNum)) {
-        alert("⚠️ کال نمبر درست کریں (موبائل 11 ہندسے یا لینڈ لائن فارمیٹ)");
-        document.getElementById('callNumber').classList.add('invalid');
-        isValid = false;
-      } else {
-        document.getElementById('callNumber').classList.remove('invalid');
-      }
-    } else {
-      if(document.getElementById('callNumber').value.trim() !== "") 
-        document.getElementById('callNumber').classList.remove('invalid');
-      else {
-        if(!callNum) {
-          document.getElementById('callNumber').classList.add('invalid');
-          isValid = false;
-        }
-      }
-    }
-    
-    // ========== ای میل لازمی اور درست ہو ==========
-    const emailField = document.getElementById('partnerEmail');
-    const emailValue = emailField.value.trim();
-    const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-    if (!emailValue) {
-      emailField.classList.add('invalid');
-      alert("⚠️ براہ کرم اپنا ای میل ایڈریس لازمی درج کریں (تمام اہم اطلاعات کے لیے)");
-      isValid = false;
-    } else if (!emailRegex.test(emailValue)) {
-      emailField.classList.add('invalid');
-      alert("⚠️ ای میل کی شکل درست نہیں ہے (مثال: name@example.com)");
-      isValid = false;
-    } else {
-      emailField.classList.remove('invalid');
-    }
-    
-    // رضامندی
+
+    // Consent checkbox
     const consent = document.getElementById('consentCheck').checked;
     if (!consent) {
-      alert("⚠️ براہ کرم رضامندی دیں کہ معلومات درست ہیں اور آپ ہماری مصنوعات کمیشن پر بیچیں گے۔");
+      alert("📌 You must confirm that the information is accurate and agree to sell only Pakistan Digital Network products.");
       isValid = false;
     }
-    
+
     return isValid;
   }
-  
+
+  // Helper: get payment text for message
   function getPaymentText() {
-    if (selectedCashMode === 'yes') return "✅ ہاں، کیش وصول کروں گا";
-    if (selectedCashMode === 'no') return "🏦 بینک اکاؤنٹ میں رقم بھیجیں";
+    if (selectedCashMode === 'yes') return "✅ Cash on delivery / Cash pickup";
+    if (selectedCashMode === 'no') return "🏦 Bank Transfer to my account";
     return "—";
   }
-  
-  // WhatsApp message (اب صرف ہماری مصنوعات کا ذکر)
+
+  // Build WhatsApp message (professional English)
   function buildWhatsAppMessage() {
     const fullName = document.getElementById('fullName').value.trim();
     const fatherName = document.getElementById('fatherName').value.trim();
@@ -552,103 +632,106 @@
     const callNumber = document.getElementById('callNumber').value.trim();
     const shopName = document.getElementById('shopName').value.trim();
     const pickupAddr = document.getElementById('pickupAddress').value.trim();
-    const paymentText = getPaymentText();
-    
-    // new fields
     const partnerEmail = document.getElementById('partnerEmail').value.trim();
-    const seasonalAdvice = document.getElementById('seasonalAdvice').value.trim();
-    
-    let bankDetailsText = "";
+    const seasonalAdvice = document.getElementById('seasonalAdvice').value.trim() || "Not provided (optional)";
+    const paymentText = getPaymentText();
+
+    let bankDetailsBlock = "";
     if (selectedCashMode === 'no') {
-      const bankNameVal = document.getElementById('bankName').value.trim();
-      const accTitleVal = document.getElementById('accountTitle').value.trim();
-      const accNumberVal = document.getElementById('accountNumber').value.trim();
-      bankDetailsText = `🏦 بینک کا نام: ${bankNameVal || "—"}\n• اکاؤنٹ ٹائٹل: ${accTitleVal || "—"}\n• اکاؤنٹ نمبر/IBAN: ${accNumberVal || "—"}`;
+      const bankName = document.getElementById('bankName').value.trim();
+      const accTitle = document.getElementById('accountTitle').value.trim();
+      const accNumber = document.getElementById('accountNumber').value.trim();
+      bankDetailsBlock = `🏦 Bank Name: ${bankName}\n• Account Title: ${accTitle}\n• Account/IBAN: ${accNumber}`;
     } else {
-      bankDetailsText = "💰 ادائیگی کیش وصول کی جائے گی";
+      bankDetailsBlock = "💵 Payment will be received in cash";
     }
-    
-    const message = `🌟 *پاکستان ڈیجیٹل نیٹ ورک* 🌟
+
+    const message = `🌟 *PAKISTAN DIGITAL NETWORK* 🌟
 ━━━━━━━━━━━━━━━━━━━
-🆔 *کمیشن پارٹنر رجسٹریشن (صرف ہماری مصنوعات)*
-    
-👤 *ذاتی معلومات*
-• نام: ${fullName}
-• والد کا نام: ${fatherName}
-• شہر/تحصیل: ${cityTehsil}
-• مکمل پتہ: ${fullAddress}
-    
-📞 *رابطہ نمبر*
-• واٹس ایپ: ${whatsapp}
-• کال نمبر: ${callNumber}
-    
-📧 *ای میل (لازمی)*
-${partnerEmail}
-    
-🏪 *کاروبار اور پک اپ*
-• دکان کا نام: ${shopName}
-• پک اپ پتہ: ${pickupAddr}
-    
-📦 *کاروباری ماڈل (طے شدہ)*
-• صرف پاکستان ڈیجیٹل نیٹ ورک کی مصنوعات فروخت کریں گے۔
-• ہر فروخت پر مقررہ کمیشن دیا جائے گا۔
-    
-💸 *ادائیگی کی ترجیح*
+*📋 NEW COMMISSION PARTNER REGISTRATION*
+*Exclusive Products | Fixed Commission*
+
+👤 *PERSONAL DETAILS*
+• Full Name: ${fullName}
+• Father's/Husband's Name: ${fatherName}
+• City/Tehsil: ${cityTehsil}
+• Full Address: ${fullAddress}
+
+📞 *CONTACT INFO*
+• WhatsApp: ${whatsapp}
+• Call Number: ${callNumber}
+• Email: ${partnerEmail}
+
+🏪 *BUSINESS & PICKUP*
+• Shop Name: ${shopName}
+• Pickup Address: ${pickupAddr}
+
+💼 *BUSINESS MODEL*
+✅ Partner will exclusively sell Pakistan Digital Network products.
+✅ Commission paid per sale — no personal inventory shipping.
+
+💰 *PAYMENT PREFERENCE*
 ${paymentText}
-${selectedCashMode === 'no' ? `\n▫️ بینک تفصیلات:\n${bankDetailsText}` : `\n${bankDetailsText}`}
-    
-🆕 *موسم / مارکیٹ کی رائے*
-${seasonalAdvice || "کوئی رائے فراہم نہیں کی گئی (اختیاری)"}
-    
+${selectedCashMode === 'no' ? `\n▫️ Bank Details:\n${bankDetailsBlock}` : `\n${bankDetailsBlock}`}
+
+📈 *MARKET INSIGHT (Seasonal Advice)*
+${seasonalAdvice}
+
 ━━━━━━━━━━━━━━━━━━━
-✅ رجسٹریشن کی درخواست موصول ہوگئی (پاکستان ڈیجیٹل نیٹ ورک)
-📌 ہم جلد از جلد ای میل اور واٹس ایپ پر رابطہ کریں گے۔
-پاکستان ڈیجیٹل نیٹ ورک ٹیم`;
-    
+✅ I confirm that all details are correct and I agree to the partnership terms.
+📌 *Registration submitted via official form — Awaiting confirmation*
+
+_Powered by Pakistan Digital Network_`;
+
     return message;
   }
-  
-  // Main submit handler
+
+  // Main submit: validate and redirect to WhatsApp
   function submitRegistration() {
-    updateBankRequiredBasedOnSelection();
     if (!validateForm()) {
       return;
     }
-    
-    const message = buildWhatsAppMessage();
-    const adminNumber = "923125540048";
-    const whatsappUrl = `https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappMessage = buildWhatsAppMessage();
+    const adminNumber = "923125540048";   // Official partner registration number
+    const encodedMsg = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${adminNumber}?text=${encodedMsg}`;
     window.open(whatsappUrl, '_blank');
   }
-  
-  // Remove invalid class on input for better UX
-  const allInputs = document.querySelectorAll('input, textarea');
+
+  // Remove invalid styles on input
+  const allInputs = document.querySelectorAll('input, textarea, select');
   allInputs.forEach(input => {
     input.addEventListener('input', function() {
       this.classList.remove('invalid');
     });
   });
-  
-  // Set initial states: bank hidden
-  window.addEventListener('load', function() {
+
+  // Numeric filter for mobile numbers
+  const mobileFields = ['whatsappNumber', 'callNumber'];
+  mobileFields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9-]/g, '');
+        if (id === 'whatsappNumber' && this.value.length > 11) this.value = this.value.slice(0,11);
+      });
+    }
+  });
+
+  // Attach submit event
+  const submitBtn = document.getElementById('submitBtn');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', submitRegistration);
+  }
+
+  // Initialization: set default hidden bank state
+  window.addEventListener('DOMContentLoaded', () => {
     bankContainer.classList.add('hidden');
     setBankRequired(false);
-    
-    // Mobile digits filter
-    const mobileInputs = ['whatsappNumber', 'callNumber'];
-    mobileInputs.forEach(id => {
-      const el = document.getElementById(id);
-      if(el) {
-        el.addEventListener('input', function(e) {
-          this.value = this.value.replace(/[^0-9]/g, '');
-          if(this.value.length > 11) this.value = this.value.slice(0,11);
-        });
-      }
-    });
-    
     selectedCashMode = "";
+    // optional: pre-clean active states
+    cashOptions.forEach(opt => opt.classList.remove('active'));
   });
 </script>
-
 </body>
 </html>
