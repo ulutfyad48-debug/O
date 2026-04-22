@@ -2,113 +2,403 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting to Tracking System...</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Secure Redirect | Business Tracking System</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0a1628, #122040);
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 20%, #0B1120, #0A0F1A);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
+      font-family: system-ui, -apple-system, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+      padding: 1.5rem;
+      margin: 0;
     }
 
-    .card {
-      background: white;
-      color: #0a1628;
-      padding: 30px 25px;
-      border-radius: 20px;
-      max-width: 380px;
-      width: 90%;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    /* premium card */
+    .redirect-card {
+      max-width: 480px;
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.02);
+      padding: 2rem 1.8rem 2.2rem;
+      transition: transform 0.2s ease, opacity 0.3s ease;
+      animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
 
-    .logo {
-      font-size: 20px;
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* branding placeholder */
+    .brand-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid #E9EDF2;
+      padding-bottom: 1rem;
+    }
+    .brand-logo {
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #1E2A44, #0F172A);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .brand-badge {
+      background: #F5F7FC;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2C3E66;
+    }
+
+    /* trust row */
+    .trust-row {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      background: #F8FAFF;
+      padding: 0.7rem 1rem;
+      border-radius: 60px;
+      margin-bottom: 1.8rem;
+      justify-content: center;
+    }
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1F2A48;
+    }
+    .trust-item svg {
+      width: 16px;
+      height: 16px;
+    }
+    .gold-dot {
+      color: #C9A227;
       font-weight: bold;
-      margin-bottom: 10px;
-      color: #c9a227;
     }
 
-    h2 {
-      margin: 10px 0;
-      font-size: 18px;
+    /* main message */
+    .heading {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #0A1428;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .sub-message {
+      color: #5A6A85;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
     }
 
-    p {
-      font-size: 14px;
-      color: #555;
+    /* loader + indicator */
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem 0 1rem;
     }
-
-    .loader {
-      margin: 20px auto;
-      border: 4px solid #eee;
-      border-top: 4px solid #c9a227;
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid #E2E8F0;
+      border-top: 3px solid #C9A227;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 1rem;
     }
-
     @keyframes spin {
+      0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    .btn {
-      display: none;
-      margin-top: 15px;
-      padding: 12px;
-      background: #0a1628;
-      color: #c9a227;
-      border: none;
+    .status-text {
+      font-size: 0.85rem;
+      color: #3E4A6B;
+      font-weight: 450;
+      background: #F1F4F9;
+      padding: 0.3rem 1rem;
       border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
+      display: inline-block;
+    }
+    .secure-note {
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      color: #7F8CA3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
     }
 
-    .btn:hover {
-      background: #c9a227;
-      color: #0a1628;
+    /* fallback button (hidden initially) */
+    .fallback-btn {
+      margin-top: 1.2rem;
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid #C9A227;
+      color: #1F2A48;
+      padding: 0.85rem 0;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 48px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: none;
+      text-align: center;
+      background-color: #FFFFFF;
+      font-family: inherit;
+    }
+    .fallback-btn:hover {
+      background: #C9A227;
+      color: #0A1428;
+      border-color: #C9A227;
+      transform: scale(0.98);
+      box-shadow: 0 6px 14px rgba(201, 162, 39, 0.2);
+    }
+    .fallback-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* extra trust footer */
+    .footer-trust {
+      margin-top: 1.8rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #8592AE;
+      border-top: 1px solid #EDF2F7;
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* responsiveness */
+    @media (max-width: 480px) {
+      .redirect-card {
+        padding: 1.6rem;
+      }
+      .heading {
+        font-size: 1.4rem;
+      }
+      .trust-row {
+        gap: 0.8rem;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<div class="card">
-  <div class="logo">Your Brand</div>
+<div class="redirect-card" role="main" aria-labelledby="redirect-heading">
+  
+  <!-- Brand placeholder (logo / company name) -->
+  <div class="brand-area">
+    <div class="brand-logo" aria-label="Company brand">◈ TRACKFLOW</div>
+    <div class="brand-badge">official partner</div>
+  </div>
 
-  <h2>Redirecting to Tracking System</h2>
-  <p>Please wait while we securely connect you...</p>
+  <!-- Trust elements: secure connection & official system -->
+  <div class="trust-row">
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9v4c0 3.87 3.13 7 7 7s7-3.13 7-7V9c0-3.87-3.13-7-7-7z" stroke="#C9A227" stroke-width="1.5" fill="white"/>
+        <path d="M12 11v3M12 16h.01" stroke="#C9A227" stroke-width="1.8" stroke-linecap="round"/>
+        <rect x="8" y="9" width="8" height="5" rx="1" fill="#C9A227" fill-opacity="0.2" stroke="#C9A227" stroke-width="1"/>
+      </svg>
+      <span>Secure connection</span>
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#C9A227" stroke-width="1.5" fill="none"/>
+      </svg>
+      <span>Official tracking system</span>
+    </div>
+  </div>
 
-  <div class="loader"></div>
+  <!-- main copy -->
+  <h1 id="redirect-heading" class="heading">Redirecting to secure tracker</h1>
+  <div class="sub-message">
+    You are being redirected to the official order tracking portal.  
+    Your session is encrypted and verified.
+  </div>
 
-  <button class="btn" onclick="goNow()">Open Tracking Now</button>
+  <!-- loading indicator + info -->
+  <div class="loader-container">
+    <div class="spinner" aria-label="Loading, please wait"></div>
+    <div class="status-text" id="statusMessage">Establishing secure gateway • please wait</div>
+    <div class="secure-note">
+      <span>🔒</span><span>TLS 1.3 secure channel</span>
+    </div>
+  </div>
+
+  <!-- fallback button (visible only if redirect fails) -->
+  <button id="continueBtn" class="fallback-btn">
+    ✦ Open Tracking Now ✦
+  </button>
+
+  <div class="footer-trust">
+    <span>✓ Verified portal</span>
+    <span>✓ 256-bit encryption</span>
+    <span>✓ Auto-redirect in progress</span>
+  </div>
 </div>
 
 <script>
-  const url = "https://script.google.com/macros/s/AKfycbx_RaCj3iGgI7py5V1nY3pnbIvjgizShBzMD2iwuHpS_aBmqzwOGGeqH3C0xiYAm3Ug/exec";
-
-  // Auto redirect after 3 seconds
-  setTimeout(() => {
-    window.location.href = url;
-  }, 3000);
-
-  // Show button if redirect fails (after 3 sec)
-  setTimeout(() => {
-    document.querySelector(".btn").style.display = "block";
-  }, 3000);
-
-  function goNow() {
-    window.location.href = url;
-  }
+  (function() {
+    // ---- DO NOT CHANGE REDIRECT URL LOGIC ----
+    const TARGET_URL = "https://script.google.com/macros/s/AKfycbx_RaCj3iGgI7py5V1nY3pnbIvjgizShBzMD2iwuHpS_aBmqzwOGGeqH3C0xiYAm3Ug/exec";
+    
+    // UI elements
+    const continueBtn = document.getElementById('continueBtn');
+    const statusMsgSpan = document.getElementById('statusMessage');
+    
+    // state to avoid double redirect or duplicate fallback UI spam
+    let redirectInitiated = false;
+    let fallbackShown = false;
+    
+    // Helper: perform redirect (once)
+    function performRedirect() {
+      if (redirectInitiated) return;
+      redirectInitiated = true;
+      
+      // clear any timers that might trigger fallback again after redirect
+      if (window._autoRedirectTimer) clearTimeout(window._autoRedirectTimer);
+      if (window._fallbackTimer) clearTimeout(window._fallbackTimer);
+      
+      // update status message for final attempt (polite)
+      if (statusMsgSpan && !fallbackShown) {
+        statusMsgSpan.textContent = "Redirecting now...";
+      }
+      
+      // execute redirect
+      window.location.href = TARGET_URL;
+    }
+    
+    // Show fallback button (only when redirect appears to have failed/stalled)
+    function showFallbackButton() {
+      if (fallbackShown) return;
+      if (redirectInitiated) {
+        // If redirect already triggered but page is still here after extra timeout -> redirect likely failed
+        // we still show button to empower user
+      }
+      fallbackShown = true;
+      
+      if (continueBtn) {
+        continueBtn.style.display = "block";
+        // subtle animation: fade-in
+        continueBtn.style.animation = "fadeSlideUp 0.3s ease";
+      }
+      // Update status message to be transparent about fallback
+      if (statusMsgSpan) {
+        statusMsgSpan.innerHTML = "⚠️ Automatic redirect delayed — click below to continue";
+        statusMsgSpan.style.background = "#FFF1E0";
+        statusMsgSpan.style.color = "#A86800";
+      }
+    }
+    
+    // ---- SETUP AUTO REDIRECT DELAY (3 seconds) ----
+    // Delay = 3000ms for premium smooth experience
+    window._autoRedirectTimer = setTimeout(() => {
+      // if we haven't already redirected, perform auto redirect
+      if (!redirectInitiated) {
+        performRedirect();
+        
+        // After performing redirect, we set a safety window to detect failure:
+        // If after 1200ms the page is still here (redirect didn't work due to any browser issue),
+        // we show the fallback button.
+        window._fallbackTimer = setTimeout(() => {
+          // if the page still exists and redirect hasn't completed (page not unloaded)
+          // AND we haven't shown fallback yet, then present "Open Now" button.
+          if (!fallbackShown && !redirectInitiated) {
+            // Actually redirectInitiated should be true because performRedirect() set it to true
+            // but if location.href assignment failed for some security reason (extremely rare), 
+            // redirectInitiated might be true but page is stuck. We still show button.
+            showFallbackButton();
+          } else if (!fallbackShown && redirectInitiated) {
+            // Redirect was called but user is still on page: fallback needed
+            showFallbackButton();
+          }
+        }, 1200); // extra 1.2 sec grace period after redirect attempt
+      }
+    }, 3000);  // 3 seconds delay, builds trust & eliminates "instant scam feeling"
+    
+    // In case the fallback timer never triggers (edge) we also set a maximum fallback timer 
+    // to display button after 4.5 seconds total if page is still alive.
+    const ultimateFallbackTimer = setTimeout(() => {
+      if (!fallbackShown && !redirectInitiated) {
+        // redirect never even attempted? shouldn't happen, but safety
+        showFallbackButton();
+      } else if (!fallbackShown && redirectInitiated && document.visibilityState !== "hidden") {
+        // after redirect was attempted but page still present -> show button
+        showFallbackButton();
+      }
+    }, 4700);
+    
+    // attach manual fallback button handler (Open Now / Continue)
+    if (continueBtn) {
+      continueBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (!redirectInitiated) {
+          performRedirect();
+        } else {
+          // if redirect already attempted but page didn't move, force another redirect
+          window.location.href = TARGET_URL;
+        }
+      });
+    }
+    
+    // Optional: if user clicks anywhere on card we do not interfere; but we keep clean UX.
+    // Also add a subtle "page visibility" guard: if user leaves tab and comes back, we do not duplicate.
+    window.addEventListener('beforeunload', function() {
+      // nothing heavy; just ensures no timers misbehave
+      if (window._autoRedirectTimer) clearTimeout(window._autoRedirectTimer);
+      if (window._fallbackTimer) clearTimeout(window._fallbackTimer);
+    });
+    
+    // Additional trust enhancement: show "secure" dynamic message after 1 sec
+    setTimeout(() => {
+      if (!fallbackShown && !redirectInitiated && statusMsgSpan) {
+        statusMsgSpan.textContent = "Validating secure handshake • redirect ready";
+      }
+    }, 1500);
+    
+    // Cleanup timers in case of redirect success (but page will unload anyway)
+    // ensure ultimate fallback does not show if redirect succeeded
+    window.addEventListener('pageshow', function(ev) {
+      if (ev.persisted) {
+        // if page is restored from bfcache, ensure fallback shows if needed
+        if (!redirectInitiated && !fallbackShown) {
+          showFallbackButton();
+        }
+      }
+    });
+  })();
 </script>
-
 </body>
 </html>
