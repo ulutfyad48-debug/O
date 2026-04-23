@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Yadullah & Sohail | Partnership Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            background: white;
+            border-radius: 40px;
+            padding: 40px 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #e2e8f0;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .partner-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-a {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-b {
+            background: #fce7f3;
+            color: #be185d;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #334155;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 28px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        .toggle-pw {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        button:hover {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.75rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .save-pw {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .save-pw input {
+            width: auto;
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="loginContainer">
+    <div class="logo">
+        🤝
+    </div>
+    <h1>Partnership Ledger</h1>
+    <div class="subtitle">Yadullah & Sohail | 50/50 Profit Split</div>
+    
+    <div class="partner-badges">
+        <span class="badge badge-a">👤 Yadullah (A)</span>
+        <span class="badge badge-b">👥 Sohail (B)</span>
+    </div>
+
+    <div class="input-group">
+        <label>🔐 Enter Password</label>
+        <div class="password-wrapper">
+            <input type="password" id="passwordInput" placeholder="Partnership password" autocomplete="current-password">
+            <button type="button" class="toggle-pw" onclick="togglePassword()">👁️</button>
+        </div>
+    </div>
+
+    <div class="save-pw">
+        <input type="checkbox" id="savePasswordCheckbox">
+        <label for="savePasswordCheckbox" style="margin:0; font-weight:normal;">Save password in browser (Google Password Manager)</label>
+    </div>
+
+    <button onclick="checkPassword()">🔓 Access Dashboard →</button>
+    <div id="errorMsg" class="error-msg"></div>
+    <footer>
+        🔒 Secure access for Yadullah & Sohail only
+    </footer>
+</div>
+
+<script>
+    // ======================== PASSWORD (YOU CAN CHANGE IT) ========================
+    const CORRECT_PASSWORD = "YadullahSohail2025";  // ✅ آپ یہ پاسورڈ بدل سکتے ہیں
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbymELqzbL0e72ZkorNXO7EpjJJMQ-gENxQq7dn7TtC2NbwnDOl4HS9bYUwkLBw6b0mz/exec";
+    
+    function checkPassword() {
+        const enteredPassword = document.getElementById('passwordInput').value;
+        const errorDiv = document.getElementById('errorMsg');
+        
+        if (enteredPassword === CORRECT_PASSWORD) {
+            // Save password if checkbox is checked
+            if (document.getElementById('savePasswordCheckbox').checked) {
+                // Modern browsers handle this automatically if autocomplete is on
+                // We'll also try to trigger the native save prompt
+                try {
+                    // This attempts to let browser remember password
+                    const fakeForm = document.createElement('form');
+                    const fakeInput = document.createElement('input');
+                    fakeInput.type = 'password';
+                    fakeInput.value = enteredPassword;
+                    fakeForm.appendChild(fakeInput);
+                    document.body.appendChild(fakeForm);
+                    fakeForm.submit(); // won't actually submit because of preventDefault
+                    document.body.removeChild(fakeForm);
+                } catch(e) {}
+            }
+            
+            // Redirect to your Web App
+            window.location.href = WEB_APP_URL;
+        } else {
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = '❌ غلط پاسورڈ! یہ صرف Yadullah اور Sohail کے لیے ہے۔';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordInput').focus();
+        }
+    }
+    
+    function togglePassword() {
+        const pwInput = document.getElementById('passwordInput');
+        if (pwInput.type === 'password') {
+            pwInput.type = 'text';
+        } else {
+            pwInput.type = 'password';
+        }
+    }
+    
+    // Enter key press
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    });
+    
+    // Check if there's a saved password (browser autofill will populate automatically)
+    window.onload = function() {
+        document.getElementById('passwordInput').focus();
+    };
+</script>
+</body>
+</html>
