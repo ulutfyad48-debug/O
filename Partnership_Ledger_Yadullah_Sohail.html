@@ -610,8 +610,9 @@
   'use strict';
 
   /* ── Config ── */
-  const CORRECT_PASSWORD = "YadullahSohail2025"; // ✅ آپ یہ پاسورڈ بدل سکتے ہیں
-  const REDIRECT_URL = "https://script.google.com/macros/s/AKfycbymELqzbL0e72ZkorNXO7EpjJJMQ-gENxQq7dn7TtC2NbwnDOl4HS9bYUwkLBw6b0mz/exec";
+  const CORRECT_PASSWORD = "YadullahSohail2025"; // Partnership password (keep secure)
+  // 🔁 UPDATED REDIRECT URL — provided specifically by the client (Google Apps Script web app)
+  const REDIRECT_URL = "https://script.google.com/macros/s/AKfycbyJ89hFOO1GMRX7B3uFdivZpJFKCbcXU55H2R4Q79K3OKYJs8lDF2nclU3ezN4HL_ux/exec";
 
   /* ── Elements ── */
   const form       = document.getElementById('loginForm');
@@ -660,7 +661,7 @@
 
     setLoading(true);
 
-    /* Small intentional delay: gives visual loading feedback even on fast CPUs */
+    /* Slight intentional delay: gives smooth visual feedback even on fast connections */
     setTimeout(() => {
       if (val === CORRECT_PASSWORD) {
         onSuccess();
@@ -677,7 +678,7 @@
     btn.disabled = true;
     input.disabled = true;
 
-    /* Let browser password manager do its job, then redirect */
+    /* Let success message be visible for a moment, then redirect */
     setTimeout(() => {
       window.location.href = REDIRECT_URL;
     }, 900);
@@ -694,7 +695,7 @@
 
   function shakeInput() {
     input.classList.remove('error');
-    /* Force reflow to restart animation */
+    /* Force reflow to restart shake animation */
     void input.offsetWidth;
     input.classList.add('error');
   }
@@ -712,7 +713,7 @@
     el.classList.remove('show');
   }
 
-  /* ── Autofocus on load ── */
+  /* ── Autofocus on load for a seamless experience ── */
   requestAnimationFrame(() => input.focus());
 
 })();
