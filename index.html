@@ -1,637 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digital Sites Hub — Business Hub</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0c10;
-    --surface: #111318;
-    --surface2: #171b22;
-    --border: rgba(255,255,255,0.07);
-    --gold: #f0b429;
-    --gold-dim: rgba(240,180,41,0.12);
-    --gold-glow: rgba(240,180,41,0.25);
-    --teal: #00d4aa;
-    --teal-dim: rgba(0,212,170,0.1);
-    --rose: #ff6b6b;
-    --rose-dim: rgba(255,107,107,0.1);
-    --blue: #4a9eff;
-    --blue-dim: rgba(74,158,255,0.1);
-    --purple: #a78bfa;
-    --purple-dim: rgba(167,139,250,0.1);
-    --green: #34d399;
-    --green-dim: rgba(52,211,153,0.1);
-    --orange: #fb923c;
-    --orange-dim: rgba(251,146,60,0.1);
-    --text: #e8eaf0;
-    --text-dim: #8892a4;
-    --text-faint: #4a5568;
-    --radius: 16px;
-    --radius-sm: 10px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Digital Sites Hub — Executive Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-deep: #05070a;
+      --surface-1: #0c0f14;
+      --surface-2: #12161e;
+      --surface-3: #191f2a;
+      --border-dim: rgba(255, 255, 255, 0.06);
+      --border-mid: rgba(255, 255, 255, 0.1);
+      --gold: #f5b042;
+      --gold-glow: rgba(245, 176, 66, 0.2);
+      --gold-dim: rgba(245, 176, 66, 0.08);
+      --teal: #2dd4bf;
+      --teal-dim: rgba(45, 212, 191, 0.08);
+      --blue-accent: #3b82f6;
+      --blue-dim: rgba(59, 130, 246, 0.08);
+      --rose: #f87171;
+      --rose-dim: rgba(248, 113, 113, 0.08);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167, 139, 250, 0.08);
+      --green: #22c55e;
+      --green-dim: rgba(34, 197, 94, 0.08);
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.08);
+      --text-primary: #f0f2f8;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+    body {
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-  /* Ambient background */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -30%;
-    left: -20%;
-    width: 70%;
-    height: 70%;
-    background: radial-gradient(ellipse, rgba(240,180,41,0.04) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -20%;
-    right: -20%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(ellipse, rgba(0,212,170,0.04) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+    /* ambient glow */
+    .bg-aura {
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(ellipse at 30% 40%, rgba(245, 176, 66, 0.08), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1;
-  }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
 
-  /* ── HEADER ── */
-  header {
-    padding: 28px 0 20px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .logo-block {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .logo-icon {
-    width: 48px; height: 48px;
-    background: linear-gradient(135deg, var(--gold), #d97706);
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    box-shadow: 0 0 24px var(--gold-glow);
-    flex-shrink: 0;
-  }
-  .logo-text h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: #fff;
-    line-height: 1;
-  }
-  .logo-text span {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    letter-spacing: 0.5px;
-    font-weight: 400;
-  }
-  .header-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--gold-dim);
-    border: 1px solid rgba(240,180,41,0.2);
-    border-radius: 100px;
-    padding: 6px 14px;
-    font-size: 0.75rem;
-    color: var(--gold);
-    font-weight: 500;
-    letter-spacing: 0.3px;
-  }
-  .pulse {
-    width: 7px; height: 7px;
-    background: var(--gold);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%,100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
+    /* header */
+    .dashboard-header {
+      padding: 20px 0 12px;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
 
-  /* ── HERO ── */
-  .hero {
-    padding: 52px 0 40px;
-    text-align: center;
-  }
-  .hero-eyebrow {
-    display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 18px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.1s;
-  }
-  .hero h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -1px;
-    color: #fff;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.2s;
-  }
-  .hero h2 em {
-    font-style: normal;
-    color: var(--gold);
-  }
-  .hero-sub {
-    margin-top: 14px;
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-    font-family: 'Noto Nastaliq Urdu', serif;
-    direction: rtl;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.35s;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-  /* ── SECTION LABEL ── */
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-top: 10px;
-  }
-  .section-label .line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .section-label span {
-    font-size: 0.68rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    font-weight: 600;
-    white-space: nowrap;
-  }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, var(--gold), #c97e2a);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 12px 28px -8px rgba(245, 176, 66, 0.3);
+    }
 
-  /* ── CARDS GRID ── */
-  .grid {
-    display: grid;
-    gap: 14px;
-  }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .logo-text h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff, #cbd5e6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-  @media (max-width: 768px) {
-    .grid-3 { grid-template-columns: 1fr; }
-    .grid-2 { grid-template-columns: 1fr; }
-  }
-  @media (min-width: 500px) and (max-width: 768px) {
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  }
+    .logo-text p {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+    }
 
-  /* ── CARD ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px 20px;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-    opacity: 0;
-    animation: fadeUp 0.5s ease forwards;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: var(--radius);
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-  }
-  .card:hover::before { opacity: 1; }
+    .status-badge {
+      background: var(--gold-dim);
+      border: 1px solid rgba(245, 176, 66, 0.25);
+      border-radius: 60px;
+      padding: 6px 14px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  /* Color variants */
-  .card-gold { --accent: var(--gold); --accent-dim: var(--gold-dim); --accent-glow: var(--gold-glow); }
-  .card-teal { --accent: var(--teal); --accent-dim: var(--teal-dim); --accent-glow: rgba(0,212,170,0.2); }
-  .card-rose { --accent: var(--rose); --accent-dim: var(--rose-dim); --accent-glow: rgba(255,107,107,0.2); }
-  .card-blue { --accent: var(--blue); --accent-dim: var(--blue-dim); --accent-glow: rgba(74,158,255,0.2); }
-  .card-purple { --accent: var(--purple); --accent-dim: var(--purple-dim); --accent-glow: rgba(167,139,250,0.2); }
-  .card-green { --accent: var(--green); --accent-dim: var(--green-dim); --accent-glow: rgba(52,211,153,0.2); }
-  .card-orange { --accent: var(--orange); --accent-dim: var(--orange-dim); --accent-glow: rgba(251,146,60,0.2); }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
 
-  .card::before { background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 100%); }
-  .card:hover { border-color: rgba(255,255,255,0.14); box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px var(--accent-dim); }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
 
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .card-icon {
-    width: 44px; height: 44px;
-    background: var(--accent-dim);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-    transition: box-shadow 0.3s ease;
-  }
-  .card:hover .card-icon {
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-  .card-arrow {
-    width: 28px; height: 28px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text-faint);
-    font-size: 14px;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    flex-shrink: 0;
-  }
-  .card:hover .card-arrow {
-    background: var(--accent-dim);
-    color: var(--accent);
-    border-color: var(--accent);
-  }
+    /* hero / welcome */
+    .welcome-section {
+      margin: 32px 0 28px;
+    }
 
-  .card-body {}
-  .card-tag {
-    display: inline-block;
-    font-size: 0.62rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 6px;
-    opacity: 0.8;
-  }
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.3;
-    letter-spacing: -0.3px;
-  }
-  .card-desc {
-    margin-top: 6px;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-  .card-desc-urdu {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    direction: rtl;
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    line-height: 1.9;
-    margin-top: 4px;
-  }
-  .card-users {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .user-chip {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 3px 9px;
-    font-size: 0.67rem;
-    color: var(--text-dim);
-    font-weight: 500;
-  }
-  .user-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
+    .greeting {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 600;
+    }
 
-  /* FEATURED CARD (spans 2 cols) */
-  .card-featured {
-    grid-column: span 2;
-    flex-direction: row;
-    align-items: center;
-    padding: 26px 24px;
-    gap: 20px;
-  }
-  .card-featured .card-icon {
-    width: 56px; height: 56px;
-    font-size: 26px;
-  }
-  .card-featured .card-body { flex: 1; }
-  .card-featured .card-title { font-size: 1.15rem; }
+    .dashboard-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 6vw, 2.4rem);
+      font-weight: 800;
+      margin-top: 6px;
+      line-height: 1.2;
+    }
 
-  @media (max-width: 768px) {
-    .card-featured { grid-column: span 1; flex-direction: column; }
-  }
+    .dashboard-title span {
+      color: var(--gold);
+    }
 
-  /* ── SECTION SPACING ── */
-  .section { margin-bottom: 40px; }
+    .urdu-tag {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 28px 0 40px;
-    margin-top: 20px;
-  }
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-dim);
-    letter-spacing: -0.3px;
-  }
-  .footer-logo strong { color: var(--gold); }
-  .footer-note {
-    font-size: 0.72rem;
-    color: var(--text-faint);
-    font-family: 'Noto Nastaliq Urdu', serif;
-    direction: rtl;
-  }
+    /* quick actions (top priority) */
+    .quick-actions {
+      margin-bottom: 42px;
+    }
 
-  /* Animation delays for cards */
-  .card:nth-child(1) { animation-delay: 0.1s; }
-  .card:nth-child(2) { animation-delay: 0.18s; }
-  .card:nth-child(3) { animation-delay: 0.26s; }
-  .card:nth-child(4) { animation-delay: 0.34s; }
-  .card:nth-child(5) { animation-delay: 0.42s; }
-  .card:nth-child(6) { animation-delay: 0.5s; }
+    .section-caption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
 
-  /* Divider lines */
-  hr.div { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+    .section-caption h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
 
-</style>
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+    }
+
+    .quick-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 18px 12px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .quick-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,0.2);
+      background: var(--surface-3);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+
+    .quick-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .quick-card h4 {
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .quick-card p {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    /* card grid */
+    .section-grid {
+      margin-bottom: 48px;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .dashboard-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-card:hover {
+      border-color: var(--border-mid);
+      background: var(--surface-2);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -12px black;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(4px);
+      letter-spacing: 0.5px;
+    }
+
+    .badge-admin { background: var(--rose-dim); color: var(--rose); border: 0.5px solid rgba(248,113,113,0.3); }
+    .badge-affiliate { background: var(--teal-dim); color: var(--teal); border: 0.5px solid rgba(45,212,191,0.3); }
+    .badge-customer { background: var(--blue-dim); color: var(--blue-accent); border: 0.5px solid rgba(59,130,246,0.3); }
+    .badge-partner { background: var(--purple-dim); color: var(--purple); border: 0.5px solid rgba(167,139,250,0.3); }
+    .badge-internal { background: var(--orange-dim); color: var(--orange); border: 0.5px solid rgba(249,115,22,0.3); }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.2px;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .urdu-desc {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+      font-size: 0.7rem;
+      color: #9ca3af;
+      margin-top: 6px;
+      border-top: 1px dashed var(--border-dim);
+      padding-top: 8px;
+    }
+
+    .user-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .user-chip {
+      background: var(--surface-3);
+      border-radius: 32px;
+      padding: 3px 10px;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .arrow-link {
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: 0.2s;
+    }
+
+    /* featured store card */
+    .featured-store {
+      grid-column: span 2;
+      background: linear-gradient(125deg, #131a24, #0a0e14);
+      border-left: 3px solid var(--gold);
+    }
+
+    @media (max-width: 700px) {
+      .grid-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .featured-store {
+        grid-column: span 1;
+      }
+      .quick-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    footer {
+      border-top: 1px solid var(--border-dim);
+      margin-top: 40px;
+      padding: 28px 0 32px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .footer-urdu {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+    }
+
+    button, a {
+      cursor: pointer;
+    }
+
+    .glow-on-hover {
+      transition: all 0.2s;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="container">
-    <div class="header-inner">
-      <div class="logo-block">
-        <div class="logo-icon">🌐</div>
-        <div class="logo-text">
-          <h1>Digital Sites Hub</h1>
-          <span>Business Operations Hub</span>
-        </div>
-      </div>
-      <div class="header-badge">
-        <div class="pulse"></div>
-        All Systems Active
-      </div>
-    </div>
-  </div>
-</header>
-
+<div class="bg-aura"></div>
 <div class="container">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-eyebrow">Your Complete Business Ecosystem</div>
-    <h2>One Hub, <em>Every Tool</em></h2>
-    <p class="hero-sub">آپ کے تمام بزنس ٹولز ایک ہی جگہ — صرف ایک کلک میں جہاں چاہیں جائیں</p>
+  <!-- header -->
+  <div class="dashboard-header">
+    <div class="logo-area">
+      <div class="logo-icon">🌐</div>
+      <div class="logo-text">
+        <h1>Digital Sites Hub</h1>
+        <p>Business Command Center</p>
+      </div>
+    </div>
+    <div class="status-badge">
+      <div class="pulse-dot"></div>
+      Live · Operations Active
+    </div>
   </div>
 
-  <!-- SECTION 1: STORE -->
-  <div class="section">
-    <div class="section-label">
-      <div class="line"></div>
-      <span>🏪 Product Store</span>
-      <div class="line"></div>
-    </div>
-    <div class="grid grid-2">
+  <!-- welcome + urdu context -->
+  <div class="welcome-section">
+    <div class="greeting">⚡ DASHBOARD v2.0</div>
+    <div class="dashboard-title">Scale your workflow · <span>smart & fast</span></div>
+    <div class="urdu-tag">ایک ڈیش بورڈ — تمام کاروباری ٹولز فوری رسائی کے لیے</div>
+  </div>
 
-      <a href="https://ulutfyad48-debug.github.io/Product/" target="_blank" class="card card-gold card-featured">
-        <div class="card-icon">🛍️</div>
-        <div class="card-body">
-          <div class="card-tag">Affiliate Store</div>
-          <div class="card-title">Digital Sites Hub — Wholesale Store</div>
-          <div class="card-desc">Premium products with real wholesale prices. Password-protected catalog for affiliate users only.</div>
-          <div class="card-desc-urdu">افلیٹ یوزر کے لیے پروڈکٹ کی اصل قیمت اور مارکیٹ قیمت کے ساتھ کمپلیٹ کیٹالاگ</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Affiliate Users</div>
-          </div>
+  <!-- 🚀 QUICK ACTIONS (Top priority: Order form, Tracking, COD calculator) -->
+  <div class="quick-actions">
+    <div class="section-caption">
+      <h3>🔹 Quick Actions · روزانہ استعمال</h3>
+      <span style="font-size: 10px; color:#4b5563;">one‑tap access</span>
+    </div>
+    <div class="quick-grid">
+      <a href="https://ulutfyad48-debug.github.io/O/Oder-form.html" target="_blank" class="quick-card">
+        <div class="quick-icon">📋</div>
+        <h4>Order Submission</h4>
+        <p>Affiliate order form</p>
+      </a>
+      <a href="https://ulutfyad48-debug.github.io/O/trackorder.html" target="_blank" class="quick-card">
+        <div class="quick-icon">🔍</div>
+        <h4>Order Tracker</h4>
+        <p>Customer parcel status</p>
+      </a>
+      <a href="https://ulutfyad48-debug.github.io/O/postex-cod-shipping-calculator.html" target="_blank" class="quick-card">
+        <div class="quick-icon">🚛</div>
+        <h4>PostEx COD Calc</h4>
+        <p>Delivery charges</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Section 1: Core Commerce (Store + Analytics) second priority -->
+  <div class="section-grid">
+    <div class="section-caption">
+      <h3>📦 Core Commerce & Analytics</h3>
+      <span style="font-size:10px;">products · earnings</span>
+    </div>
+    <div class="grid-cards">
+      <!-- Featured store card -->
+      <a href="https://ulutfyad48-debug.github.io/Product/" target="_blank" class="dashboard-card featured-store">
+        <div class="card-header">
+          <div class="card-icon">🛒</div>
+          <div class="card-badge badge-affiliate">Affiliate Hub</div>
         </div>
-        <div class="card-arrow">↗</div>
+        <div class="card-title">Digital Sites Hub — Wholesale Store</div>
+        <div class="card-desc">Premium catalog with real wholesale prices + market rates. Password-protected for affiliate members.</div>
+        <div class="urdu-desc">مکمل پروڈکٹ کیٹلاگ — اصل قیمت اور مارکیٹ ویلیو کے ساتھ</div>
+        <div class="user-tags">
+          <span class="user-chip"><span class="dot"></span>Affiliate access</span>
+          <span class="user-chip"><span class="dot"></span>Wholesale rates</span>
+        </div>
       </a>
 
-      <a href="https://ulutfyad48-debug.github.io/Product/admin.html" target="_blank" class="card card-rose">
-        <div class="card-top">
+      <!-- TradeFlow Pro (analytics) -->
+      <a href="https://ulutfyad48-debug.github.io/O/TradeFlow-Pro.html" target="_blank" class="dashboard-card">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <div class="card-badge badge-affiliate">Analytics</div>
+        </div>
+        <div class="card-title">TradeFlow Pro</div>
+        <div class="card-desc">Total orders, sales count, affiliate earnings & profits — unified dashboard.</div>
+        <div class="urdu-desc">مکمل آرڈرز، منافع، اور کارکردگی کا تجزیہ</div>
+        <div class="user-tags">
+          <span class="user-chip"><span class="dot"></span>Admin</span>
+          <span class="user-chip"><span class="dot"></span>Affiliates</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Section 2: ADMIN ZONE & Internal tools (with Google Sheet link) -->
+  <div class="section-grid">
+    <div class="section-caption">
+      <h3>🔐 Administration & Back Office</h3>
+      <span style="font-size:10px;">restricted · internal only</span>
+    </div>
+    <div class="grid-cards">
+      <!-- Store Admin Panel -->
+      <a href="https://ulutfyad48-debug.github.io/Product/admin.html" target="_blank" class="dashboard-card">
+        <div class="card-header">
           <div class="card-icon">⚙️</div>
-          <div class="card-arrow">↗</div>
+          <div class="card-badge badge-admin">Admin Only</div>
         </div>
-        <div class="card-body">
-          <div class="card-tag">Admin Only</div>
-          <div class="card-title">Store Admin Panel</div>
-          <div class="card-desc">Upload, edit, and delete products. Full inventory control — only you have access.</div>
-          <div class="card-desc-urdu">پروڈکٹس اپلوڈ اور ڈیلیٹ کریں — صرف آپ کا کنٹرول</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Admin Only</div>
-          </div>
-        </div>
+        <div class="card-title">Store Admin Panel</div>
+        <div class="card-desc">Upload, edit & delete products — full inventory control.</div>
+        <div class="urdu-desc">پروڈکٹ مینجمنٹ · صرف آپ کے لیے</div>
+        <div class="user-tags"><span class="user-chip"><span class="dot"></span>Admin</span></div>
       </a>
 
-    </div>
-  </div>
-
-  <!-- SECTION 2: ORDERS & TRACKING -->
-  <div class="section">
-    <div class="section-label">
-      <div class="line"></div>
-      <span>📦 Orders & Tracking</span>
-      <div class="line"></div>
-    </div>
-    <div class="grid grid-3">
-
-      <a href="https://ulutfyad48-debug.github.io/O/Oder-form.html" target="_blank" class="card card-teal">
-        <div class="card-top">
-          <div class="card-icon">📝</div>
-          <div class="card-arrow">↗</div>
+      <!-- ⭐ GOOGLE SHEET TRACKING (Admin internal sheet) - special integration -->
+      <a href="https://docs.google.com/spreadsheets/d/12WaOoisLU_gKw251R8GL2HETuvpuInkJm4ZPwCjJJ44/edit?usp=sharing" target="_blank" class="dashboard-card" style="border-left: 2px solid var(--gold);">
+        <div class="card-header">
+          <div class="card-icon">📎</div>
+          <div class="card-badge badge-internal">Internal · API Linked</div>
         </div>
-        <div class="card-body">
-          <div class="card-tag">Affiliate Tool</div>
-          <div class="card-title">Order Submission Form</div>
-          <div class="card-desc">Affiliates submit customer orders here — product, address, and delivery details.</div>
-          <div class="card-desc-urdu">جب آرڈر آئے تو افلیٹ یوزر یہاں سے ہمیں بتائے</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Affiliate Users</div>
-          </div>
-        </div>
+        <div class="card-title">📋 Admin Order Tracking Sheet</div>
+        <div class="card-desc">Real-time Google Sheet — manage incoming customers, order details, delivery status. Direct link for admin use.</div>
+        <div class="urdu-desc">آرڈر مینجمنٹ شیٹ · گوگل شیٹ API سے منسلک | صرف ایڈمن کے لیے</div>
+        <div class="user-tags"><span class="user-chip"><span class="dot"></span>Admin only</span><span class="user-chip"><span class="dot"></span>Live orders</span></div>
       </a>
 
-      <a href="https://ulutfyad48-debug.github.io/O/trackorder.html" target="_blank" class="card card-blue">
-        <div class="card-top">
-          <div class="card-icon">🔍</div>
-          <div class="card-arrow">↗</div>
-        </div>
-        <div class="card-body">
-          <div class="card-tag">Customer Tool</div>
-          <div class="card-title">Order Tracker</div>
-          <div class="card-desc">Customers track their parcel status in real time. Share this link after every order.</div>
-          <div class="card-desc-urdu">کسٹمر کو یہ لنک بھیجیں تاکہ وہ اپنا پارسل ٹریک کر سکے</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Customers</div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://ulutfyad48-debug.github.io/O/postex-cod-shipping-calculator.html" target="_blank" class="card card-orange">
-        <div class="card-top">
-          <div class="card-icon">🚚</div>
-          <div class="card-arrow">↗</div>
-        </div>
-        <div class="card-body">
-          <div class="card-tag">Delivery Tool</div>
-          <div class="card-title">PostEx COD Calculator</div>
-          <div class="card-desc">Calculate exact delivery charges before quoting customers. Supports COD pricing.</div>
-          <div class="card-desc-urdu">کسٹمر کو بتانے سے پہلے ڈیلیوری چارجز چیک کریں</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Admin</div>
-            <div class="user-chip"><div class="user-dot"></div>Affiliates</div>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-  <!-- SECTION 3: BUSINESS MANAGEMENT -->
-  <div class="section">
-    <div class="section-label">
-      <div class="line"></div>
-      <span>📊 Business Management</span>
-      <div class="line"></div>
-    </div>
-    <div class="grid grid-3">
-
-      <a href="https://ulutfyad48-debug.github.io/O/TradeFlow-Pro.html" target="_blank" class="card card-green">
-        <div class="card-top">
-          <div class="card-icon">📈</div>
-          <div class="card-arrow">↗</div>
-        </div>
-        <div class="card-body">
-          <div class="card-tag">Earnings & Analytics</div>
-          <div class="card-title">TradeFlow Pro</div>
-          <div class="card-desc">Track total orders, sales count, affiliate earnings, and your own profit — all in one dashboard.</div>
-          <div class="card-desc-urdu">ٹوٹل آرڈرز، افلیٹ ارننگ، پروڈکٹ سیلز — مکمل حساب</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Admin</div>
-            <div class="user-chip"><div class="user-dot"></div>Affiliates</div>
-          </div>
-        </div>
-      </a>
-
-      <a href="https://ulutfyad48-debug.github.io/O/Partnership_Ledger_Yadullah_Sohail.html" target="_blank" class="card card-purple">
-        <div class="card-top">
+      <!-- Partnership Ledger -->
+      <a href="https://ulutfyad48-debug.github.io/O/Partnership_Ledger_Yadullah_Sohail.html" target="_blank" class="dashboard-card">
+        <div class="card-header">
           <div class="card-icon">🤝</div>
-          <div class="card-arrow">↗</div>
+          <div class="card-badge badge-partner">Partnership</div>
         </div>
-        <div class="card-body">
-          <div class="card-tag">Partnership</div>
-          <div class="card-title">Partnership Ledger</div>
-          <div class="card-desc">Yadullah & Sohail investment tracker — who invested how much and what the split is.</div>
-          <div class="card-desc-urdu">آپ اور آپ کے پارٹنر کی انویسٹمنٹ اور حصے کا مکمل حساب</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>Partners Only</div>
-          </div>
-        </div>
+        <div class="card-title">Partnership Ledger</div>
+        <div class="card-desc">Yadullah & Sohail investment tracker — split & contribution records.</div>
+        <div class="urdu-desc">پارٹنر انویسٹمنٹ اور منافع کی تقسیم</div>
+        <div class="user-tags"><span class="user-chip"><span class="dot"></span>Partners</span></div>
       </a>
 
-      <a href="https://ulutfyad48-debug.github.io/O/1.html" target="_blank" class="card card-teal">
-        <div class="card-top">
-          <div class="card-icon">🆕</div>
-          <div class="card-arrow">↗</div>
+      <!-- Affiliate Registration -->
+      <a href="https://ulutfyad48-debug.github.io/O/1.html" target="_blank" class="dashboard-card">
+        <div class="card-header">
+          <div class="card-icon">📝</div>
+          <div class="card-badge badge-affiliate">Onboarding</div>
         </div>
-        <div class="card-body">
-          <div class="card-tag">Onboarding</div>
-          <div class="card-title">Affiliate Registration</div>
-          <div class="card-desc">New affiliate sign-up and registration page. Send this to anyone who wants to join your network.</div>
-          <div class="card-desc-urdu">نئے افلیٹ یوزر کو یہ لنک بھیجیں رجسٹریشن کے لیے</div>
-          <div class="card-users">
-            <div class="user-chip"><div class="user-dot"></div>New Affiliates</div>
-          </div>
-        </div>
+        <div class="card-title">Affiliate Registration</div>
+        <div class="card-desc">New affiliate sign-up & onboarding. Invite partners to join your network.</div>
+        <div class="urdu-desc">نئے افلیٹس کا اندراج · لنک شیئر کریں</div>
+        <div class="user-tags"><span class="user-chip"><span class="dot"></span>New affiliates</span></div>
       </a>
-
     </div>
   </div>
 
+  <!-- additional utility note: smart layout + badges -->
+  <div style="background: rgba(255,255,255,0.02); border-radius: 18px; padding: 14px 18px; margin: 10px 0 20px; border: 1px solid var(--border-dim);">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+      <div style="font-size:0.7rem; display: flex; gap: 15px;">
+        <span>✅ <strong style="color:var(--gold)">Customer tracking:</strong> Share "Order Tracker" link</span>
+        <span>📌 <strong>Admin sheet:</strong> Update orders instantly</span>
+      </div>
+      <div style="font-size:0.7rem; font-family: 'Noto Nastaliq Urdu', serif; direction: rtl;">ٹریکنگ نمبر کے بعد کسٹمر کو فوری ٹریک لنک دیں</div>
+    </div>
+  </div>
+
+  <footer>
+    <div>© 2025 Digital Sites Hub — Unified Business Ecosystem</div>
+    <div class="footer-urdu">یاد اللہ & سہیل · تمام کاروباری ٹولز ایک جگہ</div>
+  </footer>
 </div>
 
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo"><strong>Digital Sites Hub</strong> Business Hub</div>
-      <div class="footer-note">یادللہ ڈیجیٹل سائٹس ہب — تمام حقوق محفوظ ہیں</div>
-    </div>
-  </div>
-</footer>
-
+<!-- small script for optional console greeting & footer year (no intrusive) -->
+<script>
+  (function() {
+    console.log("✅ Digital Sites Hub — Advanced Dashboard | Google Sheet Admin Integration Active");
+    // optional dynamic year but mostly static
+    const footerYear = document.querySelector('footer div:first-child');
+    if(footerYear) {
+      const year = new Date().getFullYear();
+      if(!footerYear.innerText.includes('2025')) {
+        footerYear.innerText = `© ${year} Digital Sites Hub — Unified Business Ecosystem`;
+      }
+    }
+  })();
+</script>
 </body>
 </html>
